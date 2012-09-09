@@ -1,12 +1,13 @@
 class CreateDocuments < ActiveRecord::Migration
   def change
     create_table :documents do |t|
-      t.string :name, :limit => 14
-      t.string :title
+      t.string :name, :limit => 14, :null => false
+      t.string :title, :null => false
       t.string :subtitle
-      t.text :description
+      t.text :description, :null => false
       t.string :impact
       t.string :image
+      t.boolean :active, :null => false, :default => 0
 
       t.timestamps
     end
