@@ -1,17 +1,24 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  title: MyString
-  subtitle: MyString
-  description: MyText
-  impact: MyString
-  image: MyString
+zeitgeist:
+  name: zeitgeist
+  title: Zeitgeist
+  subtitle: Le film
+  description: |
+    <p>Documentaire en trois parties :</p>
+      <ul>
+        <li>Rapprochements entre les diverses religions, notamment autour des personnages d'Horus et de Jésus</li>
+        <li>Le 11 septembre présenté comme un leurre orchestré par le gouvernement américain</li>
+        <li>Une histoire des systèmes monétaires</li>
+      </ul>
+  impact: Impact limité à Internet mais à rententissement signficatif et international.
+  image: img/seitgeist.png
+  active: true
 
 two:
   name: MyString
   title: MyString
   subtitle: MyString
-  description: MyText
+  description: Description sommaire
   impact: MyString
   image: MyString

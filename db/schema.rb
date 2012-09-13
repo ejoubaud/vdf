@@ -14,14 +14,15 @@
 ActiveRecord::Schema.define(:version => 20120901143404) do
 
   create_table "documents", :force => true do |t|
-    t.string   "name",        :limit => 14
-    t.string   "title"
+    t.string   "name",        :limit => 15,                    :null => false
+    t.string   "title",                                        :null => false
     t.string   "subtitle"
-    t.text     "description"
+    t.text     "description",                                  :null => false
     t.string   "impact"
     t.string   "image"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.boolean  "active",                    :default => false, :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
 end
