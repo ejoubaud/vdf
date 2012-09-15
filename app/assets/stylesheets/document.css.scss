@@ -1,3 +1,298 @@
-// Place all the styles related to the document controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* ===== TYPOGRAPHY ===== */
+
+@font-face {
+	font: {
+		family: 'LeagueGothicRegular';
+		weight: normal;
+		style: normal;
+	}
+	src: asset-url('League_Gothic-webfont.eot', font);
+	src: asset-url('League_Gothic-webfont.eot?#iefix', font) format('embedded-opentype'),
+		asset-url('League_Gothic-webfont.woff', font) format('woff'),
+		asset-url('League_Gothic-webfont.ttf', font) format('truetype'),
+		asset-url('League_Gothic-webfont.svg#LeagueGothicRegular', font) format('svg');
+}
+
+
+/* ===== LAYOUT ===== */
+
+
+/* Body nav */
+.body-nav {
+	margin-bottom: 1em;
+	overflow: hidden;
+	height: 2em;
+	padding-left: 1em;
+}
+.body-nav .page-title {
+	float: left;
+	display: block;
+	padding: 0; margin: 0;
+	line-height: 2em;
+	font-size: 1em;
+	font-weight: bold;
+}
+.body-nav .short-name {
+	text-transform: capitalize;
+}
+.body-nav ul {
+	/* margin top et bottom à 0 pour reset styles généraux ul */
+	margin: 0 0 0;
+	overflow: hidden;
+	float: right;
+	line-height: 1.75em;
+}
+.body-nav li {
+	padding: 0 0.5em;
+	margin: 1px;
+	border: 1px solid transparent;
+}
+.body-nav li.active {
+	border-color: white;
+}
+.body-nav a {
+	padding: 0;
+	border: 0;
+}
+.fixed-nav {
+	position: fixed;
+	top: 0; left: 0; right: 0;
+	/*padding: 0 1em;*/
+	margin: 0;
+	z-index: 100;
+}
+
+
+/* ID Card */
+
+.id-card  { 
+	position: relative;
+	padding-right: 38%;
+	overflow: hidden;
+}
+.poster { 
+	float: right;
+	margin: 0.25em;
+	margin-left: 1em;
+	padding: 0.5em;
+	border: 1px dotted #353535;
+	width: 38%;
+	-webkit-border-radius: 1em; /* Safe list of prefixes from CSS3 Please */
+	border-radius: 1em;
+}
+.poster img {
+	width: 100%;
+	-webkit-border-radius: 1em; /* Safe list of prefixes from CSS3 Please */
+	border-radius: 1em;
+}
+
+.docu-title, .docu-subtitle, .tag-list, .editor { 
+	text-align: center;
+}
+
+.docu-title { 
+	padding: 0; margin: 0; border: 0;
+	font-size: 4em;
+	line-height: 1.3em;
+	font-family: 'LeagueGothicRegular', Arial, sans-serif;
+	text-transform: uppercase;
+	text-align: center;
+}
+.docu-subtitle {
+	padding: 0; margin: 0;
+	margin-bottom: 0.5em;
+	font-size: 2.5em;
+	font-family: 'LeagueGothicRegular', Arial, sans-serif;;
+	text-align: center;
+}
+.tag-list a {
+	margin: 0.25em;
+}
+.editor {
+	margin-top: 0.5em;
+}
+
+
+/* Checklist */
+.checks {
+	display: table;
+	border-collapse: collapse;
+}
+.check {
+	display: table-row;
+	*margin: 0; /* IE7- fix for no table-cell */
+	clear: both;
+	border: 1px solid black;
+	border-color: black transparent;
+	background-color: #353535;
+}
+.check .claim, .check .remark {
+	display: table-cell;
+	vertical-align: top;
+	border: 0 dashed #353535;
+	overflow: hidden;
+}
+.check .claim {
+	*float: left; /* IE7- fix for no table-cell */
+	background-color: #353535;
+	width: 45%;
+	color: white;
+	font-style: italic;
+}
+.check .remark {
+	*float: right; /* IE7- fix for no table-cell */
+	background-color: white;
+	border-left-width: 1px;
+	width: 55%;
+}
+.check .claim p, .check .remark p {
+	margin: 0.5em;
+}
+.check .remark p {
+	padding-left: 100px;
+}
+.check .picto {
+	float: left;
+}
+.picto .picto-title, .picto p {
+	display: none;
+}
+.picto img {
+	height: 100px;
+	width: 100px;
+}
+.source {
+	display: block;
+	margin-top: 0.5em;
+	text-align: right;
+}
+.source a {
+	padding: 0 0.1em;
+	border: 0;
+	margin: 0;
+	background-color: white;
+	color: black;
+	text-decoration: underline;
+	font-weight: normal;
+	font-style: italic;
+}
+.source a:hover {
+	text-decoration: none;
+	box-shadow: none;
+}
+
+
+/* Critiques et Alternatives */
+
+.link-list {
+	overflow: hidden;
+	padding: 0 1em;
+}
+.link-list li {
+	float: left;
+	border: 1px dashed #353535; /* Better width+border than new pres. element */
+	width: 49%;
+	-webkit-border-radius: 1em; /* Safe list of prefixes from CSS3 Please */
+	border-radius: 1em;
+}
+.link-list li:nth-child(2n) {
+	float: right;
+}
+.link-list li .text-unit, .link-list li h4 {
+	margin: 0 1em;
+}
+.link-list li h4 {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+.link-list h4 a {
+	display: block;
+}
+
+
+
+
+/* ===== DECORATION ===== */
+
+.check, .check .claim, .check .remark, .body-nav li, .link-list li, .posters {
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	transition: all .2s linear;
+}
+
+
+
+
+/* ===== MEDIA ===== */
+
+@media only screen  
+and (max-width : 650px) {
+
+	/* Checklist */
+	.check {
+		border: 1px solid black;
+		border-color: black transparent;
+	}
+	.check .claim, .check .remark {
+		min-height: 4em;
+		display: block;
+		float: none;
+		border-color: transparent;
+		width: 100%;
+	}
+	.check .remark p {
+		padding: 0;
+	}
+
+	/* Critiques et Alternatives */
+	.link-list {
+		padding: 0;
+	}
+	.link-list li, .link-list li:nth-child(2n) {
+		float: none;
+		width: 100%;
+		margin: 0;
+		border-width: 0 0 1px 0;
+		padding: 0;
+		-webkit-border-radius: 0; /* Safe list of prefixes from CSS3 Please */
+		border-radius: 0;
+	}
+}
+
+/* Body Nav */
+@media only screen  
+and (max-width : 500px) {
+	.body-nav {
+		font-size: 80%;
+	}
+}
+@media only screen  
+and (max-width : 380px) {
+	.body-nav li {
+		display: none;
+	}
+	.body-nav li.active {
+		display: inline-block;
+		border-color: transparent;
+	}
+	
+}
+@media only screen  
+and (max-width : 260px) {
+	.body-nav .prefix {
+		display: none;
+	}
+}
+
+
+@media only screen  
+and (max-width : 415px) {
+
+	/* ID Card */
+	.poster {
+		float: none;
+		margin: auto;
+		width: 8em;
+	}
+}

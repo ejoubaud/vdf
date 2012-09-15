@@ -1,0 +1,312 @@
+/* ===== TYPOGRAPHY ===== */
+
+/* Titles */
+
+@font-face {
+	font: {
+		family: 'Stardos Stencil';
+		weight: normal;
+		style: normal;
+	}
+	src: asset-url('stardosstencil-regular-webfont.eot', font);
+	src: asset-url('stardosstencil-regular-webfont.eot?#iefix', font) format('embedded-opentype'),
+		asset-url('stardosstencil-regular-webfont.woff', font) format('woff'),
+		asset-url('stardosstencil-regular-webfont.ttf', font) format('truetype'),
+		asset-url('stardosstencil-regular-webfont.svg#StardosStencilRegular', font) format('svg');
+}
+@font-face {
+	font: {
+		family: 'Stardos Stencil Bold';
+		weight: bold;
+		style: normal;
+	}
+	src: asset-url('stardosstencil-bold-webfont.eot', font);
+	src: asset-url('stardosstencil-bold-webfont.eot?#iefix', font) format('embedded-opentype'),
+		asset-url('stardosstencil-bold-webfont.woff', font) format('woff'),
+		asset-url('stardosstencil-bold-webfont.ttf', font) format('truetype'),
+		asset-url('stardosstencil-bold-webfont.svg#StardosStencilBold', font) format('svg');
+}
+
+
+
+h1 {
+	text-transform: uppercase;
+	font-size: 4em;
+	font-family: 'Stardos Stencil', Helvetica, Arial, sans-serif;
+	margin-bottom: 0.1em;
+	font-weight: bold;
+}
+h2 { font-size: 1.2em; font-family: "Heiti TC Light", Helvetica, Verdana, sans-serif; }
+h3 { font-weight: bold; font-size: 1em; font-family: "Heiti TC Light", Helvetica, Verdana, sans-serif; }
+h3 {
+	padding-bottom: 0.5em;
+	margin-top: 1em;
+	border-bottom: 1px solid black;
+}
+h4 { margin-bottom: 0.5em; }
+
+/* General text */
+/* body { font-family: 'Heiti TC Light', Helvetica, Verdana, sans-serif; }*/
+body { font-family: "museo-sans-1","museo-sans-2", Helvetica, Arial, sans-serif; }
+p { margin-bottom: 1em; }
+ul, ol { margin-top: 0.5em; margin-bottom: 0.5em; }
+.text-unit ul, .text-unit ol { list-style: disc outside; margin-left: 2em; }
+li { margin-top: 0.5em; margin-bottom: 0.5em; }
+
+/* Quotes (adapted from type-a-file.com Editorial theme */
+
+blockquote { display: inline-block; font-style: italic; font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,serif; }
+blockquote:before { font-family: Monaco,Consolas,"Lucida Console",monospace; content:"“"; font-size: 2.1em; font-style: normal; text-indent: -0.75em; float: left; opacity:0.3; line-height: 1.25; }
+cite { display: block; text-transform: uppercase; letter-spacing: 0.2em; margin-top: 0.75em; font-weight: 900; font-style: normal; font-size: 0.85em; }
+cite:before { content: "—"; margin-left: -1.75em; margin-right: 0.5em; opacity: 0.3; }
+
+
+
+
+/* ===== COMMON ===== */
+
+/* Background colors */
+a, nav, .title, .title:after, h2.section-title, footer.page-footer {
+	background-color: #0F171D;
+	color: white;
+}
+
+
+
+/* ===== LAYOUT ===== */
+
+/* General */
+a {
+	display: inline-block;
+	padding: 0.25em;
+	border: 1px solid black;
+	text-align: center;
+	background-color: #0F171D;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+a:hover {
+	border-color: white;
+	background-color: #353535;
+	box-shadow: 0 0 1em black;
+	text-decoration: underline;
+}
+
+nav ul { display: list-item; list-style: none; }
+nav li { float: left; text-align: center; } 
+nav a {
+	border-color: transparent;
+	background-color: inherit;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1em;
+}
+nav a:hover {
+	box-shadow: none;
+	border-color: transparent;
+	background-color: inherit;
+	text-decoration: underline;
+}
+
+section {
+	clear: both;
+}
+
+
+
+/* Header Title */
+.title {
+	position: relative;
+	margin-top: 4em; margin-bottom: 2em;
+	padding: 3em 0;
+	width: 100%;
+	border-style: dashed;
+	border-color: white;
+	border-width: 1px 0;
+	text-align: center;
+}
+
+.title:before {
+	content: '';
+	position: absolute;
+	top: -2em; bottom: -2em; left: 0;
+	width: 100%;
+	border-left: 0; border-right: 0;
+	background: white;
+	z-index: 5;
+}
+.title:after {
+	content: '';
+	position: absolute;
+	top: 0; bottom: 0; left: 0;
+	width: 100%;
+	border-style: dashed;
+	border-color: white;
+	border-width: 1px 0;
+	border-left: 0; border-right: 0;
+	z-index: 10;
+}
+.title h1, .title h2 {
+	color: white;
+	position: relative;
+	text-shadow: 2.5px 2.5px black;
+	z-index: 50;
+}
+
+/* Header Nav */
+.site-nav {
+	position: absolute;
+	right: 0; top: 0.75em;
+	padding: 0.5em 0.5em;
+	border: 1px solid white;
+	border-right: 0;
+	z-index: 50;
+	-webkit-border-radius: 2em 0 0 2em; /* Safe list of prefixes from CSS3 Please */
+	border-radius: 2em 0 0 2em;
+}
+.site-nav ul, .site-nav li {
+	/* reset styles généraux ul */
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.site-nav li {
+	width: 6.5em;
+}
+
+
+/* Body */
+section.body { 
+	position: relative;
+	width: 100%;
+	max-width: 960px;
+	padding-bottom: 2em;
+	margin: auto;
+	box-shadow: -1em 0 1em -1em black, 1em 0 1em -1em black;
+}
+section.body section { 
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+/* Body sections */
+.section-title { 
+	margin-top: 2em; margin-bottom: 1em;
+	padding-left: 1em; padding-right: 1em;
+	line-height: 1.5em;
+}
+
+
+
+/* Footer */
+footer {
+	clear: both;
+}
+.page-footer {
+	padding: 2em 2em;
+	text-align: center;
+}
+
+
+
+
+/* ===== DECORATION ===== */
+
+.light-spot, .title, .title:after {
+	/*opacity: 0.9; filter: alpha(opacity=90); /* fallback for non-supporting browsers - Chrome 4+, FF2+, Saf3.1+, Opera 9+, IE9, iOS 3.2+, Android 2.1+ ; IE6-IE8 */
+	background-image: -webkit-radial-gradient(circle closest-corner, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+	background-image: -moz-radial-gradient(circle closest-corner, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+	background-image: -ms-radial-gradient(circle closest-corner, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+	background-image: -o-radial-gradient(circle closest-corner, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+	background-image: radial-gradient(circle closest-corner, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+}
+
+.close, .title, .title:before, .title:after, nav {
+	-webkit-box-shadow: 0 0 1em black;
+	-moz-box-shadow: 0 0 1em black;
+	box-shadow: 0 0 1em black;
+}
+
+.title h1, .title h2, .site-nav, .site-nav li, .site-nav a {
+	-webkit-transition:all .2s linear;
+	-moz-transition:all .2s linear;
+	-o-transition:all .2s linear;
+	transition:all .2s linear;
+}
+
+
+
+/* ===== IE Hacks ===== */
+
+/* No pseudo-elements */
+.no-generatedcontent .site-nav, .no-generatedcontent .title {
+	position: static;
+	margin: auto;
+	width: 100%;
+	max-width: 960px;
+}
+
+.no-boxshadow section.body {
+	border: 1px solid black;
+	border-bottom-color: transparent;
+}
+.no-boxshadow .title:before {
+	border-style: solid;
+	border-color: black;
+	border-width: 1px 0;
+}
+
+
+
+/* ===== MEDIA ===== */
+
+/* Title */
+@media only screen  
+and (max-width : 415px) {
+	.title h1 {
+		font-size: 2em;
+		margin: 0.25em 0;
+	}
+	.title h2 { font-size: 1em; }
+	.title { 
+		padding: 0.5em 0;
+		margin: 0;
+	}
+	.title:before { content: none; }
+	.title:after { content: none; }
+	.site-nav {
+		position: static;
+		padding: 0;
+		-webkit-border-radius: 0; /* Safe list of prefixes from CSS3 Please */
+		border-radius: 0;
+	}
+	.site-nav ul {
+		text-align: center;
+	}
+	.site-nav li {
+		float: none;
+		display: inline-block;
+		width: auto;
+		margin: auto;
+	}
+	.site-nav a {
+		float: none;
+		display: inline-block;
+		font-size: 90%;
+		width: auto;
+	}
+}
+
+/* Body */
+@media only screen  
+and (max-width : 768px) {
+	h3 { padding-left: 0.5em; }
+	section.body section { 
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+
+
+

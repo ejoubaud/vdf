@@ -12,13 +12,24 @@ zeitgeist:
         <li>Une histoire des systèmes monétaires</li>
       </ul>
   impact: Impact limité à Internet mais à rententissement signficatif et international.
-  image: img/seitgeist.png
+  poster: zeitgeist.jpg
+  creator: Mouvement Zeitgeist
+  creator_url: http://www.thezeitgeistmovement.com/
   active: true
 
-two:
-  name: MyString
-  title: MyString
-  subtitle: MyString
-  description: Description sommaire
-  impact: MyString
-  image: MyString
+zdraft:
+  name: zeitgeist
+  title: Das Zeitgeist
+  subtitle: L'esprit du temps
+  description: |
+    <p>Documentaire conspirationniste en trois parties :</p>
+      <ul>
+        <li>Rapprochements entre les diverses religions, notamment autour des personnages d'Horus et de Jésus</li>
+        <li>Le 11 septembre présenté comme un leurre orchestré par le gouvernement américain</li>
+        <li>Une histoire des systèmes monétaires</li>
+      </ul>
+  impact: Impact fort sur Internet et les réseaux sociaux mais à rententissement signficatif et international.
+  poster: zeitgeist.jpg
+  creator: Peter Joseph
+  creator_url: http://www.whoispeterjoseph.com/
+  active: false

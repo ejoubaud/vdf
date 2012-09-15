@@ -3,7 +3,7 @@ require 'test_helper'
 
 class DocumentTest < ActiveSupport::TestCase
 
-  test "Name, title and descrpiption are mandatory" do
+  test "Name, title, descrpiption and active are mandatory" do
     base_doc = documents(:zeitgeist)
 
     [:name=, :title=, :description=, :active=].each do |setter| 
@@ -36,7 +36,7 @@ class DocumentTest < ActiveSupport::TestCase
     new_doc
   end
 
-  test "Only one Active doc for each name" do
+  test "Only one can be active for each name" do
     doc = documents(:zeitgeist)
 
     assert_nothing_raised do
@@ -61,6 +61,43 @@ class DocumentTest < ActiveSupport::TestCase
     assert_raise(ActiveRecord::RecordInvalid) do
       same_name_doc.active = true
       same_name_doc.save!
+    end
+  end
+
+  test "Many inactive drafts for each name is fine" do
+    doc = documents(:zdraft)
+
+    assert_nothing_raised do
+      doc.dup.save!
+    end
+  end
+
+  test "Creator URL needs to be a URL" do
+    doc = documents(:zdraft).dup
+
+    assert_nothing_raised do
+      doc.creator_url = ""
+      doc.save!
+      doc.creator_url = "http://www.google.com/"
+      doc.save!
+    end
+
+    assert_raise(ActiveRecord::RecordInvalid) do
+      doc.creator_url = "htp://www.google.com/"
+      doc.save!
+    end
+  end
+
+  test "Creator URL needs a creator" do
+    doc = documents(:zdraft).dup
+    doc.creator_url = "http://www.facebook.com"
+    assert_raise(ActiveRecord::RecordInvalid) do
+      doc.creator = nil
+      doc.save!
+    end
+    assert_nothing_raised do
+      doc.creator = "Mark Zuckerberg"
+      doc.save!
     end
   end
 
