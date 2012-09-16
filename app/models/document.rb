@@ -3,6 +3,8 @@
 class Document < ActiveRecord::Base
   attr_accessible :description, :image, :active, :impact, :name, :subtitle, :title, :active, :creator, :creator_url
 
+  has_many :checks
+
   validates :name, presence: true, length: { maximum: 15 }
   validates :title, presence: true
   validates :description, presence: true

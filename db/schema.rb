@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120915170402) do
+ActiveRecord::Schema.define(:version => 20120916171646) do
 
   create_table "checks", :force => true do |t|
-    t.string   "claim",      :limit => 140, :null => false
-    t.string   "stamp",      :limit => 32,  :null => false
-    t.string   "remark",     :limit => 140, :null => false
+    t.string   "claim",       :limit => 140, :null => false
+    t.string   "remark",      :limit => 140, :null => false
     t.string   "ref_url"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "stamp_id"
+    t.integer  "document_id"
   end
 
   create_table "documents", :force => true do |t|
@@ -37,5 +38,12 @@ ActiveRecord::Schema.define(:version => 20120915170402) do
   end
 
   add_index "documents", ["name"], :name => "index_documents_on_name"
+
+  create_table "stamps", :force => true do |t|
+    t.string  "name",        :limit => 15, :null => false
+    t.string  "title",       :limit => 32, :null => false
+    t.string  "description"
+    t.integer "document_id"
+  end
 
 end

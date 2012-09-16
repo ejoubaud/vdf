@@ -9,9 +9,11 @@ horus:
   stamp: apocryphal
   remark: Thèse marginale défendue seulement dans un ouvrage au sérieux douteux. Pas de revue par les pairs.
   ref_url: http://conspiracies.skepticproject.com/articles/zeitgeist/companion-guide/
+  document: zeitgeist
 
 money:
   claim: La monnaie en circulation est essentiellement de la monnaire fiduciaire issue d'une création ex-nihilo par les banques lors d'un prêt.
   stamp: true
   remark: C'est un mécanisme monétaire fondamental bien connu et documenté dans tout cours d'économie monétaire.
   ref_url: http://en.wikipedia.org/wiki/Money_creation
+  document: zeitgeist

@@ -101,4 +101,10 @@ class DocumentTest < ActiveSupport::TestCase
     end
   end
 
+  test "Checklist has accessible elements" do
+    doc = documents(:zeitgeist)
+    assert doc.checks.size > 1
+    assert doc.checks[0].is_a? Check
+  end
+
 end

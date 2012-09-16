@@ -1,0 +1,30 @@
+<section id="checklist">
+	<header>
+		<h2 class="section-title">
+			Examiner : Sa version à l'épreuve des faits
+		</h2>
+	</header>
+	<ul class="checks">
+		<% doc.checks.each do |check| %>
+			<li class="check">
+				<div class="claim">
+					<p><%= check.claim %></p>
+				</div>
+				<div class="remark">
+					<div class="picto reference">
+						<img src="img/tampon2.png" />
+						<h4 class="picto-title">Réf. introuvable</h4>
+						<p></p>
+					</div>
+					<p>
+						<%= check.claim %>
+						<span class="source">
+							 &ndash;&nbsp;
+							 <a href="http://www.google.fr/">R&eacute;f.</a>
+						</span>
+					</p>
+				</div>
+			</li>
+		<% end %>
+	</ul>
+</section>
