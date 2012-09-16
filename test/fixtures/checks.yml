@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+horus:
+  claim: Le personnage de Jésus est déjà présent dans le folklore de nombreuses religions antérieures, notamment le Horus de l'Egypte Ancienne.
+  stamp: apocryphal
+  remark: Thèse marginale défendue seulement dans un ouvrage au sérieux douteux. Pas de revue par les pairs.
+  ref_url: http://conspiracies.skepticproject.com/articles/zeitgeist/companion-guide/
+
+money:
+  claim: La monnaie en circulation est essentiellement de la monnaire fiduciaire issue d'une création ex-nihilo par les banques lors d'un prêt.
+  stamp: true
+  remark: C'est un mécanisme monétaire fondamental bien connu et documenté dans tout cours d'économie monétaire.
+  ref_url: http://en.wikipedia.org/wiki/Money_creation

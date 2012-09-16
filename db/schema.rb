@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913180745) do
+ActiveRecord::Schema.define(:version => 20120915170402) do
+
+  create_table "checks", :force => true do |t|
+    t.string   "claim",      :limit => 140, :null => false
+    t.string   "stamp",      :limit => 32,  :null => false
+    t.string   "remark",     :limit => 140, :null => false
+    t.string   "ref_url"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "documents", :force => true do |t|
     t.string   "name",        :limit => 15,                    :null => false
