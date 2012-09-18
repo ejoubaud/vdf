@@ -5,7 +5,6 @@ class LinkChecks < ActiveRecord::Migration
       t.string :name, :limit => 15, :unique => true, :null => false
       t.string :title, :limit => 32, :null => false
       t.string :description
-      t.references :document
     end
 
     change_table :checks do |t|

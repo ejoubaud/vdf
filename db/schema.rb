@@ -40,10 +40,9 @@ ActiveRecord::Schema.define(:version => 20120916171646) do
   add_index "documents", ["name"], :name => "index_documents_on_name"
 
   create_table "stamps", :force => true do |t|
-    t.string  "name",        :limit => 15, :null => false
-    t.string  "title",       :limit => 32, :null => false
-    t.string  "description"
-    t.integer "document_id"
+    t.string "name",        :limit => 15, :null => false
+    t.string "title",       :limit => 32, :null => false
+    t.string "description"
   end
 
 end

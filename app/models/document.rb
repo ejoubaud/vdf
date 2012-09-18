@@ -16,4 +16,8 @@ class Document < ActiveRecord::Base
 
   # Several inactive drafts may share the same name, but only one version can be active
   validates_with OnlyOneActiveByNameValidator
+
+  def self.sheet(name)
+    where(active: true, name: name).includes(:checks).first
+  end
 end

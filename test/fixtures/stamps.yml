@@ -1,11 +1,16 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+# encoding: utf-8
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+falsestamp:
+  name: 'false'
+  title: Faux
+  description: |
+    Vérifiable et vérifié, 
+    mais ne correspond pas à la réalité
+
+impugnin:
+  name: impugnin-motive
+  title: Procès d'intention
+  description: |
+    Accusation prêtant sans fondement des 
+    intentions condamnables à sa cible
+

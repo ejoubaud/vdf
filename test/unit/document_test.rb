@@ -107,4 +107,11 @@ class DocumentTest < ActiveSupport::TestCase
     assert doc.checks[0].is_a? Check
   end
 
+  test "Sheet loads all you need to display on a doc sheet" do
+    doc = documents(:zeitgeist)
+    assert !doc.association(:checks).loaded?
+    sheet = Document.sheet('zeitgeist')
+    assert sheet.association(:checks).loaded?
+  end
+
 end
