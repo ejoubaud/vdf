@@ -61,4 +61,9 @@ class CheckTest < ActiveSupport::TestCase
     assert_equal check.stamp.name, 'false'
   end
 
+  test "to_s" do
+    check = checks(:horus)
+    assert_equal "#{check}", "zeitgeist: false, Le personnage de Jésus est déj..."
+  end
+
 end

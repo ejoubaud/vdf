@@ -5,22 +5,20 @@
 		</h2>
 	</header>
 	<ul class="checks">
-		<% doc.checks.each do |check| %>
+		<% @doc.checks.each do |check| %>
 			<li class="check">
 				<div class="claim">
 					<p><%= check.claim %></p>
 				</div>
 				<div class="remark">
-					<div class="picto reference">
-						<img src="img/tampon2.png" />
-						<h4 class="picto-title">Réf. introuvable</h4>
-						<p></p>
+					<div class="picto <%= check.stamp.name %>">
+						<%= image_tag("#{check.stamp.name}.png", alt: check.stamp.title, "data-longdesc" => check.stamp.description ) %>
 					</div>
 					<p>
-						<%= check.claim %>
+						<%= check.remark %>
 						<span class="source">
 							 &ndash;&nbsp;
-							 <a href="http://www.google.fr/">R&eacute;f.</a>
+							 <%= content_tag(:a, "Réf.", href: check.ref_url) unless check.ref_url.blank? %>
 						</span>
 					</p>
 				</div>

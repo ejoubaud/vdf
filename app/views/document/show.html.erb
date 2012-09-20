@@ -26,11 +26,13 @@
 			end unless @doc.creator.blank?
 	%>
 
-	<div class="summary text-unit">
-		<%= raw @doc.description %>
-	</div>
-	<p class="impact"><%= raw @doc.impact %></p>
-	
+	<div class="summary text-unit"><%= raw @doc.description %></div>
+	<p class="impact">
+		<%= raw @doc.impact %>
+	</p>
+
+	<%= render 'checklist' %>
+
 </section>
 
 </section>

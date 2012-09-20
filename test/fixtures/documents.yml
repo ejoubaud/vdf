@@ -1,16 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 zeitgeist:
   name: zeitgeist
   title: Zeitgeist
   subtitle: Le film
-  description: |
-    <p>Documentaire en trois parties :</p>
-      <ul>
-        <li>Rapprochements entre les diverses religions, notamment autour des personnages d'Horus et de Jésus</li>
-        <li>Le 11 septembre présenté comme un leurre orchestré par le gouvernement américain</li>
-        <li>Une histoire des systèmes monétaires</li>
-      </ul>
+  description: <p>Documentaire en trois parties :</p>
+                 <ul>
+                   <li>Rapprochements entre les diverses religions, notamment autour des personnages d'Horus et de Jésus</li>
+                   <li>Le 11 septembre présenté comme un leurre orchestré par le gouvernement américain</li>
+                   <li>Une histoire des systèmes monétaires</li>
+                 </ul>
   impact: Impact limité à Internet mais à rententissement signficatif et international.
   poster: zeitgeist.jpg
   creator: Mouvement Zeitgeist

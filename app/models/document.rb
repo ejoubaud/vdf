@@ -5,9 +5,8 @@ class Document < ActiveRecord::Base
 
   has_many :checks
 
-  validates :name, presence: true, length: { maximum: 15 }
-  validates :title, presence: true
-  validates :description, presence: true
+  validates_presence_of :name, :title, :description
+  validates :name, length: { maximum: 15 }
   validates :active, inclusion: { :in => [true, false] }
   validates :creator_url, format: { :with => URI::regexp(%w(http https)), :unless => lambda { |d| d.creator_url.blank? } }
 
@@ -17,7 +16,13 @@ class Document < ActiveRecord::Base
   # Several inactive drafts may share the same name, but only one version can be active
   validates_with OnlyOneActiveByNameValidator
 
-  def self.sheet(name)
-    where(active: true, name: name).includes(:checks).first
+  def self.sheet_associations() [ :checks ]; end
+  def self.sheet(id_or_name)
+    col = id_or_name.is_a?(Integer) ? :id : :name
+    where(:active => true, col => id_or_name).includes(sheet_associations).first
+  end
+
+  def to_s
+    name
   end
 end

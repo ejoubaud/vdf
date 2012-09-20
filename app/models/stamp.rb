@@ -5,4 +5,8 @@ class Stamp < ActiveRecord::Base
 
   validates :name, :presence => true, length: { maximum: 15 }
   validates :title, :presence => true, length: { maximum: 32 }
+
+  def to_s
+    name
+  end
 end

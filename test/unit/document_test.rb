@@ -107,11 +107,27 @@ class DocumentTest < ActiveSupport::TestCase
     assert doc.checks[0].is_a? Check
   end
 
-  test "Sheet loads all you need to display on a doc sheet" do
+  test "sheet method eagerly loads all you need to display on a doc sheet" do
+    doc = Document.where(name: 'zeitgeist').first
+    assert !doc.association(:checks).loaded?, "basic requests only fetch the document table"
     doc = documents(:zeitgeist)
-    assert !doc.association(:checks).loaded?
+    assert !doc.association(:checks).loaded?, "fixtures requests either"
+
     sheet = Document.sheet('zeitgeist')
-    assert sheet.association(:checks).loaded?
+    assert sheet.association(:checks).loaded?, "sheet eagerly fetches the first found active sheet for that name"
+
+    id = ActiveRecord::Fixtures.identify(:zeitgeist)
+    sheet = Document.sheet(id)
+    assert sheet.association(:checks).loaded?, "sheet does the job with id too"
+
+    assert_nothing_raised do
+      assert Document.sheet('wontwork').nil?, "sheet returns nil when no ID/name matches"
+    end
+  end
+
+  test "to_s" do
+    doc = documents(:zeitgeist)
+    assert_equal "#{doc}", doc.name
   end
 
 end
