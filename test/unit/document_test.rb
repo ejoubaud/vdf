@@ -90,15 +90,15 @@ class DocumentTest < ActiveSupport::TestCase
     assert doc.checks[0].is_a? Check
   end
 
-  test "Links are either critics or category links" do
+  test "Links are either reviews or category links" do
     doc = documents(:zeitgeist)
     cat_links = doc.links_by_category.values.flatten
-    critics = doc.critics
+    reviews = doc.reviews
 
-    assert_equal doc.links.size, cat_links.size + critics.size
-    assert_equal [],             doc.links - cat_links - critics
+    assert_equal doc.links.size, cat_links.size + reviews.size
+    assert_equal [],             doc.links - cat_links - reviews
     assert cat_links.all? { |link| link.is_a? CategoryLink }
-    assert critics.all? { |link| !link.is_a? CategoryLink }
+    assert reviews.all? { |link| !link.is_a? CategoryLink }
   end
 
   test "sheet method eagerly loads all you need to display on a doc sheet" do

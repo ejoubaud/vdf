@@ -14,7 +14,7 @@ debunking:
   url: http://www.google.fr/
   description: Documentaire réalisé en réaction à
     Zeitgeist 1, lui portant la contradiction sur un
-    mode tout aussi spectaculaire.
+    mode tout aussi sensationnaliste.
   document: zeitgeist
 
 monnaie:
@@ -23,7 +23,7 @@ monnaie:
   description: Cours sur les systèmes monétaires 
     internationaux, avec un traitement des
     objectifs de chaque étape de leurs évolutions
-    sans procès d'intention
+    sans procès d'intention.
   document: zeitgeist
   category: Système monétaire
   type: CategoryLink
@@ -61,4 +61,4 @@ econoclaste:
     et différences de coût du travail, l'éconoclaste
     confronte les exemples et conclusions
     du documentaire à l'analyse économique."
-  document: zeitgeist
+  document: obsolescence

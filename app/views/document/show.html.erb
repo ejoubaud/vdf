@@ -4,8 +4,8 @@
 	<ul class="nav">
 		<li><a href="#id-card">ID Card</a></li>
 		<li><a href="#checklist">Checklist</a></li>
-		<li><a href="#critics">Critiques</a></li>
-		<li><a href="#dig-it">Alternatives</a></li>
+		<li><a href="#reviews">Critiques</a></li>
+		<li><a href="#options">Alternatives</a></li>
 	</ul>
 	<h2 class="page-title"><a href="#"><span class="prefix">VDF::</span><span class="short-name"><%= @doc.name %></span></a></h2>
 </nav>
@@ -20,10 +20,10 @@
 		<a href="#">tag3</a>
 	</div>
 
-	<% 	# renders tag with link if url provided, with name if only name provided, nothing otherwise
-		content_tag(:p, :class => 'editor') do 
-			@doc.creator_url.blank? ? @doc.creator : link_to(@doc.creator, @doc.creator_url, :rel => 'nofollow')
-			end unless @doc.creator.blank?
+	<%= # renders tag with link if url provided, with name if only name provided, nothing otherwise
+		content_tag(:p, :class => 'editor') do
+			link_to_unless @doc.creator_url.blank?, @doc.creator, @doc.creator_url, rel: 'nofollow'
+		end unless @doc.creator.blank?
 	%>
 
 	<div class="summary text-unit"><%= raw @doc.description %></div>
@@ -31,8 +31,10 @@
 		<%= raw @doc.impact %>
 	</p>
 
-	<%= render 'checklist' %>
-
 </section>
+
+<%= render 'checklist' %>
+<%= render 'critics' %>
+<%= render 'options' %>
 
 </section>

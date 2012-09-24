@@ -1,3 +1,4 @@
+<% unless (checklist = @doc.checks).blank? %>
 <section id="checklist">
 	<header>
 		<h2 class="section-title">
@@ -5,7 +6,8 @@
 		</h2>
 	</header>
 	<ul class="checks">
-		<% @doc.checks.each do |check| %>
+
+		<% checklist.each do |check| %>
 			<li class="check">
 				<div class="claim">
 					<p><%= check.claim %></p>
@@ -18,11 +20,13 @@
 						<%= check.remark %>
 						<span class="source">
 							 &ndash;&nbsp;
-							 <%= content_tag(:a, "Réf.", href: check.ref_url) unless check.ref_url.blank? %>
+							 <%= link_to "Réf.", check.ref_url unless check.ref_url.blank? %>
 						</span>
 					</p>
 				</div>
 			</li>
 		<% end %>
+
 	</ul>
 </section>
+<% end %>

@@ -35,7 +35,7 @@ class Document < ActiveRecord::Base
     end
   end
 
-  def critics
+  def reviews
     unless links.blank?
       links.select { |link| link.category.blank? }
     end
