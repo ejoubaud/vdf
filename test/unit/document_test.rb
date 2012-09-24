@@ -4,29 +4,17 @@ require 'test_helper'
 class DocumentTest < ActiveSupport::TestCase
 
   test "Name, title, descrpiption and active are mandatory" do
-    base_doc = documents(:zeitgeist)
+    doc = documents(:zeitgeist)
 
-    [:name=, :title=, :description=, :active=].each do |setter| 
-      assert_raise(ActiveRecord::RecordInvalid) do
-        doc = base_doc.dup
-        doc.send(setter, '')
-        doc.save!
-      end
-    end
+    assert_required doc, :name, :title, :description, :active
 
-    assert_nothing_raised { base_doc.save! }
+    assert_nothing_raised { doc.save! }
   end
 
   test "Name has to be short (<=15 chars)" do
-    doc = documents(:zeitgeist).dup
-    assert_nothing_raised do
-      doc.name = "Equals 15 chars"
-      doc.save!
-    end
-    assert_raise(ActiveRecord::RecordInvalid) do
-      doc.name = "Exceeds 15 chars"
-      doc.save!
-    end
+    doc = documents(:zeitgeist)
+    
+    assert_max_length doc, name: 15
   end
 
   # Instantiates only the mandatory attributes
@@ -75,50 +63,60 @@ class DocumentTest < ActiveSupport::TestCase
   test "Creator URL needs to be a URL" do
     doc = documents(:zdraft).dup
 
-    assert_nothing_raised do
-      doc.creator_url = ""
-      doc.save!
-      doc.creator_url = "http://www.google.com/"
-      doc.save!
-    end
+    doc.creator_url = ""
+    assert doc.valid?
+    doc.creator_url = "http://www.google.com/"
+    assert doc.valid?
 
-    assert_raise(ActiveRecord::RecordInvalid) do
-      doc.creator_url = "htp://www.google.com/"
-      doc.save!
-    end
+    doc.creator_url = "htp://www.google.com/"
+    assert doc.invalid?
   end
 
   test "Creator URL needs a creator" do
     doc = documents(:zdraft).dup
     doc.creator_url = "http://www.facebook.com"
-    assert_raise(ActiveRecord::RecordInvalid) do
-      doc.creator = nil
-      doc.save!
-    end
-    assert_nothing_raised do
-      doc.creator = "Mark Zuckerberg"
-      doc.save!
-    end
+    
+    doc.creator = nil
+    assert doc.invalid?
+    doc.creator = "Mark Zuckerberg"
+    assert doc.valid?
+
   end
 
   test "Checklist has accessible elements" do
     doc = documents(:zeitgeist)
+
     assert doc.checks.size > 1
     assert doc.checks[0].is_a? Check
   end
 
+  test "Links are either critics or category links" do
+    doc = documents(:zeitgeist)
+    cat_links = doc.links_by_category.values.flatten
+    critics = doc.critics
+
+    assert_equal doc.links.size, cat_links.size + critics.size
+    assert_equal [],             doc.links - cat_links - critics
+    assert cat_links.all? { |link| link.is_a? CategoryLink }
+    assert critics.all? { |link| !link.is_a? CategoryLink }
+  end
+
   test "sheet method eagerly loads all you need to display on a doc sheet" do
     doc = Document.where(name: 'zeitgeist').first
-    assert !doc.association(:checks).loaded?, "basic requests only fetch the document table"
+    assert !doc.association(:checks).loaded?, "Basic requests don't fetch the checklist."
+    assert !doc.association(:links).loaded?, "Basic requests don't fetch the links."
     doc = documents(:zeitgeist)
-    assert !doc.association(:checks).loaded?, "fixtures requests either"
+    assert !doc.association(:checks).loaded?, "Fixtures requests don't fetch the checklist."
+    assert !doc.association(:links).loaded?, "Fixtures requests don't fetch the links."
 
     sheet = Document.sheet('zeitgeist')
-    assert sheet.association(:checks).loaded?, "sheet eagerly fetches the first found active sheet for that name"
+    assert sheet.association(:checks).loaded?, "Sheet eagerly fetches checklist for given name."
+    assert sheet.association(:links).loaded?, "Sheet eagerly fetches links for given name."
 
     id = ActiveRecord::Fixtures.identify(:zeitgeist)
     sheet = Document.sheet(id)
-    assert sheet.association(:checks).loaded?, "sheet does the job with id too"
+    assert sheet.association(:checks).loaded?, "Sheet does the job with id too (checklist)."
+    assert sheet.association(:links).loaded?, "Sheet does the job with id too (links)."
 
     assert_nothing_raised do
       assert Document.sheet('wontwork').nil?, "sheet returns nil when no ID/name matches"

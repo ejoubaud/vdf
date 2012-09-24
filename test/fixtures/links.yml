@@ -1,0 +1,64 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+skeptic: 
+  title: Skeptic Project
+  url: http://www.google.fr/
+  description: Vérification des sources du film,
+    critique des différentes parties une par une,
+    infos sur le créateur du mouvement et sur son
+    financement.
+  document: zeitgeist
+
+debunking: 
+  title: Debunking Zeitgeist
+  url: http://www.google.fr/
+  description: Documentaire réalisé en réaction à
+    Zeitgeist 1, lui portant la contradiction sur un
+    mode tout aussi spectaculaire.
+  document: zeitgeist
+
+monnaie:
+  title: Cours d'histoire de la monnaie
+  url: http://www.google.fr/
+  description: Cours sur les systèmes monétaires 
+    internationaux, avec un traitement des
+    objectifs de chaque étape de leurs évolutions
+    sans procès d'intention
+  document: zeitgeist
+  category: Système monétaire
+  type: CategoryLink
+
+inflation:
+  title: "L'inflation: solution ou péril ?"
+  url: http://www.google.fr/
+  description: Présentation des théories de la
+    monnaie de différentes écoles de pensée
+    économique, et des solutions qu'elles
+    préconisent.
+  document: zeitgeist
+  category: Système monétaire
+  type: CategoryLink
+
+myths:
+  title: Les mythes religieux
+  url: http://www.google.fr/
+  description: Site spécialisé dans l'étude des
+    mythes, rites et religions, et de leurs
+    influences réciproques.
+  document: zeitgeist
+  category: Mythologies et religions
+  type: CategoryLink
+
+
+
+
+econoclaste: 
+  title: L'éconoclaste
+  url: http://econoclaste.org.free.fr/dotclear/index.php/?2011/03/07/1773-le-mythe-de-l-obsolescence-programmee
+  description: "Biais de survie, contraintes
+    de production, préférence du consommateur
+    pour la nouveauté, obstacles aux oligopoles
+    et différences de coût du travail, l'éconoclaste
+    confronte les exemples et conclusions
+    du documentaire à l'analyse économique."
+  document: zeitgeist

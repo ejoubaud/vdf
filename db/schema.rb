@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120916171646) do
+ActiveRecord::Schema.define(:version => 20120920113021) do
 
   create_table "checks", :force => true do |t|
     t.string   "claim",       :limit => 140, :null => false
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(:version => 20120916171646) do
   end
 
   add_index "documents", ["name"], :name => "index_documents_on_name"
+
+  create_table "links", :force => true do |t|
+    t.string   "title",       :limit => 32, :null => false
+    t.string   "url",                       :null => false
+    t.string   "description",               :null => false
+    t.integer  "document_id",               :null => false
+    t.string   "category",    :limit => 32
+    t.string   "type"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "stamps", :force => true do |t|
     t.string "name",        :limit => 15, :null => false

@@ -2,10 +2,10 @@ $LOAD_PATH << '../'
 require 'test_helper'
 
 class StampTest < ActiveSupport::TestCase
-    test "Name and title are mandatory" do
+  test "Name and title are mandatory" do
     base_stamp = stamps(:falsestamp)
 
-    [:name=, :title=].each do |setter| 
+    [ :name=, :title= ].each do |setter| 
       stamp = base_stamp.dup
       stamp.send(setter, '')
       assert stamp.invalid?
