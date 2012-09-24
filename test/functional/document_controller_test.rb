@@ -5,7 +5,7 @@ class DocumentControllerTest < ActionController::TestCase
   include ERB::Util
 
   test "Document request by name returns a document" do
-    assert_routing('/documentaire/zeitgeist', :controller => "document", :action => "show", :name => "zeitgeist")
+    assert_routing('/zeitgeist', :controller => "document", :action => "show", :name => "zeitgeist")
     get :show, { name: 'zeitgeist' }
     assert_response :success
 
@@ -22,8 +22,8 @@ class DocumentControllerTest < ActionController::TestCase
       assert_select('.docu-subtitle', doc.subtitle)
       assert_select('.impact', doc.impact)
       assert_select('.summary', :html => doc.description)
-      assert_select('.editor', doc.creator) unless doc.creator.blank?
-      assert_select('.editor[href=?]', doc.creator_url) unless doc.creator_url.blank?
+      assert_select('.editor a', doc.creator) unless doc.creator.blank?
+      assert_select('.editor a[href=?]', doc.creator_url) unless doc.creator_url.blank?
     end
   end
 
