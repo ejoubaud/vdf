@@ -3,8 +3,9 @@
 class Document < ActiveRecord::Base
   attr_accessible :description, :image, :active, :impact, :name, :subtitle, :title, :active, :creator, :creator_url
 
-  has_many :checks
-  has_many :links
+  has_many :checks, :include => :stamp
+  has_many :reviews, class_name: "DocumentLink"
+  has_many :themes, class_name: "LinkCategory", :include => :links
 
   validates_presence_of :name, :title, :description
   validates :name, length: { maximum: 15 }
@@ -17,28 +18,14 @@ class Document < ActiveRecord::Base
   # Several inactive drafts may share the same name, but only one version can be active
   validates_with OnlyOneActiveByNameValidator
 
-  def self.sheet_associations() [ :checks, :links ]; end
+  def self.sheet_associations() 
+    [ :checks,
+      :reviews,
+      { :themes => :links } ]
+  end
   def self.sheet(id_or_name)
     col = id_or_name.is_a?(Integer) ? :id : :name
     where(:active => true, col => id_or_name).includes(sheet_associations).first
-  end
-
-  def links_by_category
-    unless links.blank?
-      links.reduce({}) do |categories, link|
-        unless link.category.blank?
-          categories[link.category] ||= []
-          categories[link.category] << link 
-        end
-        categories
-      end
-    end
-  end
-
-  def reviews
-    unless links.blank?
-      links.select { |link| link.category.blank? }
-    end
   end
 
   def to_s

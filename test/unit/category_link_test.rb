@@ -14,7 +14,7 @@ class CategoryLinkTest < ActiveSupport::TestCase
   test "Category has to be short" do
     link = links(:monnaie)
 
-    assert_max_length(link, :category => 32)
+    assert_max_length(link.category, :name => 32)
   end
 
 
@@ -23,6 +23,7 @@ class CategoryLinkTest < ActiveSupport::TestCase
 
     assert link.is_a? CategoryLink
     assert link.is_a? Link
+    assert !link.is_a?(DocumentLink)
     assert_equal link.class, CategoryLink
   end
 

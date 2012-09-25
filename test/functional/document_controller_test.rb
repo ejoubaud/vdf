@@ -13,7 +13,7 @@ class DocumentControllerTest < ActionController::TestCase
     do_test_id_card(doc)
     do_test_checklist(doc.checks)
     do_test_reviews(doc.reviews)
-    do_test_alternatives(doc.links_by_category)
+    do_test_alternatives(doc.themes)
   end
 
   def do_test_id_card(doc)
@@ -54,19 +54,19 @@ class DocumentControllerTest < ActionController::TestCase
     end
   end
 
-  def do_test_alternatives(links_by_category)
-    links_by_cat = links_by_category.dup
+  def do_test_alternatives(themes_list)
+    themes = themes_list.dup
 
     assert_select '#options>ul>li' do |elements|
       elements.each do |li|
-        category, links = *links_by_cat.shift
+        cat = themes.shift
 
-        assert_select li, 'h3', h(category)
+        assert_select li, 'h3', h(cat.name)
 
-        do_test_link_list li, links
+        do_test_link_list li, cat.links
       end
     end
-    assert links_by_cat.empty?, "Bad number of categories"
+    assert themes.empty?, "Bad number of categories"
   end
 
   def do_test_link_list(parent, link_list)

@@ -33,8 +33,8 @@
 
 </section>
 
-<%= render 'checklist' %>
-<%= render 'critics' %>
-<%= render 'options' %>
+<%= render 'checklist', checklist: @doc.checks %>
+<%= render 'reviews', reviews: @doc.reviews %>
+<%= render 'options', themes: @doc.themes %>
 
 </section>

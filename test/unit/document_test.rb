@@ -90,33 +90,26 @@ class DocumentTest < ActiveSupport::TestCase
     assert doc.checks[0].is_a? Check
   end
 
-  test "Links are either reviews or category links" do
-    doc = documents(:zeitgeist)
-    cat_links = doc.links_by_category.values.flatten
-    reviews = doc.reviews
-
-    assert_equal doc.links.size, cat_links.size + reviews.size
-    assert_equal [],             doc.links - cat_links - reviews
-    assert cat_links.all? { |link| link.is_a? CategoryLink }
-    assert reviews.all? { |link| !link.is_a? CategoryLink }
-  end
-
   test "sheet method eagerly loads all you need to display on a doc sheet" do
     doc = Document.where(name: 'zeitgeist').first
     assert !doc.association(:checks).loaded?, "Basic requests don't fetch the checklist."
-    assert !doc.association(:links).loaded?, "Basic requests don't fetch the links."
+    assert !doc.association(:reviews).loaded?, "Basic requests don't fetch the reviews."
+    assert !doc.association(:themes).loaded?, "Basic requests don't fetch the themes."
     doc = documents(:zeitgeist)
     assert !doc.association(:checks).loaded?, "Fixtures requests don't fetch the checklist."
-    assert !doc.association(:links).loaded?, "Fixtures requests don't fetch the links."
+    assert !doc.association(:reviews).loaded?, "Fixtures requests don't fetch the reviews."
+    assert !doc.association(:themes).loaded?, "Fixtures requests don't fetch the themes."
 
     sheet = Document.sheet('zeitgeist')
     assert sheet.association(:checks).loaded?, "Sheet eagerly fetches checklist for given name."
-    assert sheet.association(:links).loaded?, "Sheet eagerly fetches links for given name."
+    assert sheet.association(:reviews).loaded?, "Sheet eagerly fetches reviews for given name."
+    assert sheet.association(:themes).loaded?, "Sheet eagerly fetches themes for given name."
 
     id = ActiveRecord::Fixtures.identify(:zeitgeist)
     sheet = Document.sheet(id)
     assert sheet.association(:checks).loaded?, "Sheet does the job with id too (checklist)."
-    assert sheet.association(:links).loaded?, "Sheet does the job with id too (links)."
+    assert sheet.association(:reviews).loaded?, "Sheet does the job with id too (reviews)."
+    assert sheet.association(:themes).loaded?, "Sheet does the job with id too (themes)."
 
     assert_nothing_raised do
       assert Document.sheet('wontwork').nil?, "sheet returns nil when no ID/name matches"

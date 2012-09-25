@@ -1,9 +1,10 @@
 class CategoryLink < Link
-  attr_accessible :category
+  belongs_to :category, class_name: "LinkCategory", foreign_key: :link_category_id
 
-  validates :category, presence: true, length: { maximum: 32 }
+  validates :category, presence: true
 
   def to_s
-    "#{category} > #{title}"
+    cat = category.nil? ? "" : category.name
+    "#{cat} > #{title}"
   end
 end

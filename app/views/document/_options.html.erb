@@ -1,4 +1,4 @@
-<% unless (options = @doc.links_by_category).blank? %>
+<% unless themes.blank? %>
 <section id="options">
 	<header>
 		<h2 class="section-title">
@@ -6,12 +6,12 @@
 		</h2>
 	</header>
 	<ul>
-		<% options.each do |category, links| %>
+		<% themes.each do |cat| %>
 			<li>
-				<h3><%= category %></h3>
+				<h3><%= cat.name %></h3>
 				<ul class="link-list">
 
-					<% links.each do |link| %>
+					<% cat.links.each do |link| %>
 						<li>
 							<h4><%= link_to link.title, link.url %></h4>
 							<div class="text-unit">

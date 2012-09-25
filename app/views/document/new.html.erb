@@ -1,0 +1,40 @@
+<%= form_for @doc, url: { action: "create" } do |doc| %>
+
+<section class="body">
+
+<nav class="body-nav">
+	<ul class="nav">
+		<li><a href="#id-card">ID Card</a></li>
+		<li><a href="#checklist">Checklist</a></li>
+		<li><a href="#reviews">Critiques</a></li>
+		<li><a href="#options">Alternatives</a></li>
+	</ul>
+	<h2 class="page-title"><span class="prefix">VDF::</span><span class="short-name"><%= doc.text_field :name, placeholder: "Nom court unique" %></span></h2>
+</nav>
+
+<section id="id-card" class="id-card">
+	<div class="poster"><%= image_tag(@doc.poster) %></div>
+	<h3 class="docu-title"><%= doc.text_field :title, placeholder: "Titre" %></h3>
+	<h4 class="docu-subtitle"><%= doc.text_field :subtitle, placeholder: "Sous-titre" %></h4>
+	<div class="tag-list">
+		<a href="#">tags need handling</a>
+		<a href="#">tag2</a>
+		<a href="#">tag3</a>
+	</div>
+
+	<p class="editor"><%= doc.text_field :creator, placeholder: "Nom du créateur" %><%= doc.text_field :creator_url, placeholder: "Site du ou sur le créateur" %></p>
+
+	<div class="summary text-unit"><%= doc.text_field :description, placeholder: "Résumé" %></div>
+	<p class="impact">
+		<%= doc.text_field :impact, placeholder: "Impact" %>
+	</p>
+
+</section>
+
+<%= render 'checklist', checklist: @doc.checks %>
+<%= render 'reviews', reviews: @doc.reviews %>
+<%= render 'options', themes: @doc.themes %>
+
+</section>
+
+<% end %>
