@@ -1,7 +1,15 @@
+$LOAD_PATH << '../'
 require 'test_helper'
 
-class DocumentLinkTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class LinkTest < ActiveSupport::TestCase
+
+  test "A link without category is a document link" do
+    link = links(:skeptic)
+
+    assert link.is_a? DocumentLink
+    assert link.is_a? Link
+    assert !link.is_a?(CategoryLink)
+    assert_equal link.class, DocumentLink
+  end
+
 end

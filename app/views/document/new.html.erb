@@ -19,7 +19,7 @@
 	<%= doc.error_messages header_message: "Données invalides", message: "Vous devenez respecter certaines contraintes sur les champs suivants:" %>
 
 <section id="id-card" class="id-card">
-	<div class="poster"><%= image_tag(@doc.poster) %></div>
+	<div class="poster"><%= doc.file_field :poster %></div>
 	<h3 class="docu-title"><%= doc.text_field :title, placeholder: "Titre" %></h3>
 	<h4 class="docu-subtitle"><%= doc.text_field :subtitle, placeholder: "Sous-titre" %></h4>
 	<div class="tag-list">

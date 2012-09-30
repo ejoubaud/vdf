@@ -34,12 +34,16 @@ class DocumentControllerTest < ActionController::TestCase
     assert_select '#id-card .editor input', 2
     assert_select '#id-card .summary textarea', 1
 
-    assert_select '#reviews .link-list .link', 2 do
-      assert_select 'input', 3
+    nb_links = 2
+    assert_select '#reviews .link-list .link', nb_links do
+      assert_select 'input', 3*nb_links
+      assert_select 'textarea', nb_links
     end
 
-    assert_select '#options .link-list .link', 2 do
-      assert_select 'input', 3
+    nb_links = 4
+    assert_select '#options .link-list .link', nb_links do
+      assert_select 'input', 3*nb_links
+      assert_select 'textarea', nb_links
     end
   end
 
