@@ -6,6 +6,9 @@ class DocumentControllerTest < ActionController::TestCase
 
   test "Document request by name returns a document" do
     assert_routing('/zeitgeist', :controller => "document", :action => "show", :name => "zeitgeist")
+  end
+
+  test "Showing a document displays its fields" do
     get :show, { name: 'zeitgeist' }
     assert_response :success
 
@@ -14,6 +17,30 @@ class DocumentControllerTest < ActionController::TestCase
     do_test_checklist(doc.checks)
     do_test_reviews(doc.reviews)
     do_test_alternatives(doc.themes)
+  end
+
+  test "new request returns new document form" do
+    assert_routing('/new', :controller => "document", :action => "new")
+  end
+
+  test "New document form has nested forms for checklist, reviews and themes" do
+    get :new
+    assert_response :success
+
+    assert_select '.short-name input', 1
+    %w(docu-title docu-subtitle impact).each do |class_name|
+      assert_select "#id-card .#{class_name} input", 1
+    end
+    assert_select '#id-card .editor input', 2
+    assert_select '#id-card .summary textarea', 1
+
+    assert_select '#reviews .link-list .link', 2 do
+      assert_select 'input', 3
+    end
+
+    assert_select '#options .link-list .link', 2 do
+      assert_select 'input', 3
+    end
   end
 
   def do_test_id_card(doc)
@@ -51,7 +78,6 @@ class DocumentControllerTest < ActionController::TestCase
       assert_select '#reviews' do |elements|
         do_test_link_list elements[0], reviews_list
       end
-    end
   end
 
   def do_test_alternatives(themes_list)
@@ -86,3 +112,5 @@ class DocumentControllerTest < ActionController::TestCase
     links.inspect
     assert links.empty?, "Bad number of links"
   end
+
+end

@@ -8,7 +8,7 @@
 	<ul class="link-list">
 		
 		<% reviews.each do |link| %> 
-		<li>
+		<li class="link">
 			<h4><%= link_to link.title, link.url %></h4>
 			<div class="text-unit">
 				<p><%= link.description %></p>

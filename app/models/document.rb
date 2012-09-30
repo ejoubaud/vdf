@@ -1,11 +1,15 @@
 # encoding: utf-8
 
 class Document < ActiveRecord::Base
-  attr_accessible :description, :image, :active, :impact, :name, :subtitle, :title, :active, :creator, :creator_url
+  attr_accessible :name, :title, :subtitle, :creator, :creator_url, :description, :impact, :checks_attributes, :reviews_attributes, :themes_attributes
 
-  has_many :checks, :include => :stamp
-  has_many :reviews, class_name: "DocumentLink"
-  has_many :themes, class_name: "LinkCategory", :include => :links
+  has_many :checks, dependent: :destroy
+  has_many :reviews, class_name: "DocumentLink", dependent: :destroy
+  has_many :themes, class_name: "LinkCategory", :include => :links, dependent: :destroy
+
+  accepts_nested_attributes_for :checks, allow_destroy: true, reject_if: proc { |a| [ :claim, :remark ].any? { |att| a[att].blank? } }
+  accepts_nested_attributes_for :reviews, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :themes, allow_destroy: true, reject_if: proc { |a| a[:links_attributes].all? { |_, l| l.all? { |k, v| k == '_destroy' || v.blank? } } }
 
   validates_presence_of :name, :title, :description
   validates :name, length: { maximum: 15 }
@@ -31,4 +35,15 @@ class Document < ActiveRecord::Base
   def to_s
     name
   end
+
+
+#  def reviews_attributes= *arg
+#    debugger
+#    super *arg
+#  end
+#
+#  def themes_attributes= *arg
+#    super *arg
+#  end
+
 end

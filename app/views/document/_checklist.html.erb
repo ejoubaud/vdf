@@ -18,10 +18,12 @@
 					</div>
 					<p>
 						<%= check.remark %>
-						<span class="source">
-							 &ndash;&nbsp;
-							 <%= link_to "Réf.", check.ref_url unless check.ref_url.blank? %>
-						</span>
+						<% unless check.ref_url.blank? %>
+							<span class="source">
+								 &ndash;&nbsp;
+								 <%= link_to "Réf.", check.ref_url %>
+							</span>
+						<% end %>
 					</p>
 				</div>
 			</li>

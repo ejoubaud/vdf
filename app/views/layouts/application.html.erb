@@ -4,6 +4,7 @@
   <title>Vdf</title>
   <%= stylesheet_link_tag    "application", controller_name, :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= yield :js %>
   <%= csrf_meta_tags %>
 </head>
 

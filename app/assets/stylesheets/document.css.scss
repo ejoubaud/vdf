@@ -13,6 +13,15 @@
 		asset-url('League_Gothic-webfont.svg#LeagueGothicRegular', font) format('svg');
 }
 
+/* ===== COMMON ===== */
+
+textarea {
+	width: 100%;
+}
+.remove_nested_fields {
+	float: right;
+}
+
 
 /* ===== LAYOUT ===== */
 
@@ -111,11 +120,16 @@
 .editor {
 	margin-top: 0.5em;
 }
+.summary textarea {
+	width: 55%;
+}
 
 
 /* Checklist */
 .checks {
 	display: table;
+	position: relative;
+	width: 100%;
 	border-collapse: collapse;
 }
 .check {
@@ -180,36 +194,46 @@
 	text-decoration: none;
 	box-shadow: none;
 }
+.checks .add_nested_fields {
+	position: absolute;
+	right: 0;
+}
 
 
 /* Critiques et Alternatives */
 
 .link-list {
+	position: relative;
 	overflow: hidden;
 	padding: 0 1em;
 }
-.link-list li {
+.link-list .link {
 	float: left;
+	margin: 1%;
 	border: 1px dashed #353535; /* Better width+border than new pres. element */
-	width: 49%;
+	width: 47%;
 	-webkit-border-radius: 1em; /* Safe list of prefixes from CSS3 Please */
 	border-radius: 1em;
 }
-.link-list li:nth-child(2n) {
-	float: right;
-}
-.link-list li .text-unit, .link-list li h4 {
+.link-list .link .text-unit, .link-list li h4 {
 	margin: 0 1em;
 }
-.link-list li h4 {
+.link-list .link h4 {
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
-.link-list h4 a {
+.link-list .link h4 a {
 	display: block;
 }
-
-
+.link-list .buttons-footer {
+	width: 100%;
+	clear: both;
+	text-align: right;
+}
+.link .remove_nested_fields {
+	margin-top: 0.5em;
+	margin-right: 0.5em;
+}
 
 
 /* ===== DECORATION ===== */
@@ -249,7 +273,7 @@ and (max-width : 650px) {
 	.link-list {
 		padding: 0;
 	}
-	.link-list li, .link-list li:nth-child(2n) {
+	.link-list .link {
 		float: none;
 		width: 100%;
 		margin: 0;
@@ -294,5 +318,8 @@ and (max-width : 415px) {
 		float: none;
 		margin: auto;
 		width: 8em;
+	}
+	.summary textarea {
+		width: 95%;
 	}
 }

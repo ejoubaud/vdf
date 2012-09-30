@@ -6,34 +6,18 @@ require 'test_helper'
 class CheckTest < ActiveSupport::TestCase
 
   test "Claim, stamp, and remark are mandatory" do
-    base_check = checks(:horus)
+    check = checks(:horus)
 
-    [ :claim=, :remark= ].each do |setter| 
-      check = base_check.dup
-      check.send(setter, nil)
-      assert check.invalid?
-    end
+    assert_required check, :claim, :remark
 
-    assert base_check.valid?
+    assert check.valid?
   end
 
   test "Claim and remark have to be short" do
-    base_check = checks(:horus).dup
+    check = checks(:horus).dup
 
-    over140 = "This string is a little bit longer than the 140 characters we impose on both our claims and remarks, remorselessly copying the Twitter shortness policy."
-    equals140 = "This string has an exact length of 140 characters, which is the maximum we impose on both our claims and remarks so that users can read fast"
-
-    { :claim= => over140, :remark= => over140 }.each do |setter, value| 
-      check = base_check.dup
-      check.send(setter, value)
-      assert check.invalid?
-    end
-
-    { :claim= => equals140, :remark= => equals140 }.each do |setter, value| 
-      check = base_check.dup
-      check.send(setter, value)
-      assert check.valid?
-    end
+    assert_max_length check, claim: 140
+    assert_max_length check, remark: 140
   end
 
   test "ref_url needs to be a URL" do

@@ -37,3 +37,5 @@ gem 'jquery-rails'
 # To use debugger
 gem 'debugger'
 
+gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git'
+gem 'dynamic_form'

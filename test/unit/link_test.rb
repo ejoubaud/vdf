@@ -6,7 +6,7 @@ class LinkTest < ActiveSupport::TestCase
   test "Title, URL, description and document are mandatory" do
     link = links(:skeptic)
 
-    assert_required link, :title, :description, :url, :document
+    assert_required link, :title, :description, :url
 
     assert link.valid?
   end

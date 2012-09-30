@@ -1,6 +1,8 @@
-<%= form_for @doc, url: { action: "create" } do |doc| %>
+<% content_for(:js){ javascript_include_tag :jquery_nested_form, :document_form } %>
 
 <section class="body">
+
+<%= nested_form_for @doc, url: { action: "create" }, as: :doc do |doc| %>
 
 <nav class="body-nav">
 	<ul class="nav">
@@ -9,8 +11,12 @@
 		<li><a href="#reviews">Critiques</a></li>
 		<li><a href="#options">Alternatives</a></li>
 	</ul>
-	<h2 class="page-title"><span class="prefix">VDF::</span><span class="short-name"><%= doc.text_field :name, placeholder: "Nom court unique" %></span></h2>
+	<h2 class="page-title">
+		<span class="prefix">VDF::</span><span class="short-name"><%= doc.text_field :name, placeholder: "Nom court unique" %></span>
+	</h2>
 </nav>
+	
+	<%= doc.error_messages header_message: "Données invalides", message: "Vous devenez respecter certaines contraintes sur les champs suivants:" %>
 
 <section id="id-card" class="id-card">
 	<div class="poster"><%= image_tag(@doc.poster) %></div>
@@ -24,17 +30,21 @@
 
 	<p class="editor"><%= doc.text_field :creator, placeholder: "Nom du créateur" %><%= doc.text_field :creator_url, placeholder: "Site du ou sur le créateur" %></p>
 
-	<div class="summary text-unit"><%= doc.text_field :description, placeholder: "Résumé" %></div>
+	<div class="summary text-unit"><%= doc.text_area :description, rows: 7, placeholder: "Résumé" %></div>
 	<p class="impact">
 		<%= doc.text_field :impact, placeholder: "Impact" %>
 	</p>
 
 </section>
 
-<%= render 'checklist', checklist: @doc.checks %>
-<%= render 'reviews', reviews: @doc.reviews %>
-<%= render 'options', themes: @doc.themes %>
+<%= render 'checklist_form', doc: doc %>
+<%= render 'reviews_form', doc: doc %>
+<%= render 'options_form', doc: doc %>
 
-</section>
+	<section id="body-footer" class="form-buttons">
+		<%= doc.submit "Enregistrer" %>
+	</section>
 
 <% end %>
+
+</section>
