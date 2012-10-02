@@ -7,6 +7,7 @@ Vdf::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
   match 'new' => 'document#new'
   match 'create' => 'document#create'
+  match 'list' => 'document#list'
   match ':name' => 'document#show'
 
   # Sample of named route:

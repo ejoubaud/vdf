@@ -6,7 +6,7 @@ class DocumentTest < ActiveSupport::TestCase
   test "Name, title, descrpiption and active are mandatory" do
     doc = documents(:zeitgeist)
 
-    assert_required doc, :name, :title, :description, :active
+    assert_required doc, :name, :title, :description, :active, :year
 
     assert_nothing_raised { doc.save! }
   end
@@ -17,10 +17,23 @@ class DocumentTest < ActiveSupport::TestCase
     assert_max_length doc, name: 15
   end
 
+  test "Year is between 1900 and 2025" do
+    doc = documents(:zeitgeist)
+    
+    doc.year = 1899
+    assert doc.invalid?
+    doc.year = 2026
+    assert doc.invalid?
+    doc.year = 1900
+    assert doc.valid?
+    doc.year = 2025
+    assert doc.valid?
+  end
+
   # Instantiates only the mandatory attributes
   def new_with_same_name(doc)
     new_doc = Document.new
-    new_doc.attributes = { name: doc.name, title: doc.title+'-diff', description: doc.description+'-diff' }
+    new_doc.attributes = { name: doc.name, title: doc.title+'-diff', description: doc.description+'-diff', year: doc.year }
     new_doc
   end
 

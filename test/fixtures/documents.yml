@@ -12,6 +12,7 @@ zeitgeist:
   poster: zeitgeist.jpg
   creator: Mouvement Zeitgeist
   creator_url: http://www.thezeitgeistmovement.com/
+  year: 2007
   active: true
 
 zdraft:
@@ -29,6 +30,7 @@ zdraft:
   poster: zeitgeist.jpg
   creator: Peter Joseph
   creator_url: http://www.whoispeterjoseph.com/
+  year: 2007
   active: false
 
 obsolescence:
@@ -36,13 +38,14 @@ obsolescence:
   title: Prêt à jeter
   subtitle: L'histoire méconnue de l'obsolescence programmée
   description: "<p>La thèse de Prêt-à-jeter est que la durée de vie
-    de nombreux biens est limitée volontairement par les industriels dans le cadre
-    d'une stratégie dite d'obsolescence programmée. </p>
+    des biens de consommation courante est limitée volontairement par
+    les industriels dans le cadre d'une stratégie dite d'obsolescence programmée.</p>
     <p>Le docu met en cause la société de consommation capitaliste à coups d'examples
     marquants: une ampoule centenaire, des cimetières d'ordinateurs au Ghana,
     les industries d'URSS, le cartel Phoebus, les iPod, les bas-nylon, les imprimantes...</p>"
   impact: Diffusion télévisuelle internationale (Arte en France). Référence incontournable des débats sur le sujet.
   poster: pret-a-jeter.jpg
   creator: Cosima Dannoritzer
+  year: 2010
   active: true
 

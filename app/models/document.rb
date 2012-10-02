@@ -2,7 +2,7 @@
 #require 'file_size_validator' 
 
 class Document < ActiveRecord::Base
-  attr_accessible :name, :title, :subtitle, :creator, :creator_url, :description, :impact, :poster, :checks_attributes, :reviews_attributes, :themes_attributes
+  attr_accessible :name, :title, :subtitle, :creator, :creator_url, :description, :impact, :poster, :year, :checks_attributes, :reviews_attributes, :themes_attributes
 
   has_many :checks, dependent: :destroy
   has_many :reviews, class_name: "DocumentLink", dependent: :destroy
@@ -22,9 +22,10 @@ class Document < ActiveRecord::Base
                                              end
                                            }
 
-  validates_presence_of :name, :title, :description
+  validates_presence_of :name, :title, :description, :year
   validates :name, length: { maximum: 15 }
   validates :active, inclusion: { :in => [true, false] }
+  validates :year, inclusion: { :in => 1900..2025 }
   validates :creator_url, format: { :with => URI::regexp(%w(http https)), :unless => lambda { |d| d.creator_url.blank? } }
   validates :poster, :file_size => { :maximum => 0.5.megabytes.to_i }
 
@@ -43,6 +44,9 @@ class Document < ActiveRecord::Base
   def self.sheet(id_or_name)
     col = id_or_name.is_a?(Integer) ? :id : :name
     where(:active => true, col => id_or_name).includes(sheet_associations).first
+  end
+
+  def reject_linkless_themes
   end
 
   def to_s

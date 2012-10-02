@@ -7,12 +7,11 @@ class DocumentController < ApplicationController
   end
 
   def new
-    @doc = create_doc_form
+    @doc = create_doc_new_form
     @stamps = Stamp.all
   end
 
   def create
-    debugger
     @doc = Document.new(params[:doc])
     @doc.active = true
     if @doc.save
@@ -23,9 +22,14 @@ class DocumentController < ApplicationController
     end
   end
 
+  def list
+    docs = Document.where(active: true).order(:title)
+    @docs_by_letter = sort_by_title_first_letter docs
+  end
+
 private
 
-  def create_doc_form
+  def create_doc_new_form
     doc = Document.new
     3.times { doc.checks.build }
     2.times { doc.reviews.build }
@@ -34,6 +38,14 @@ private
       2.times { theme.links.build }
     end
     doc
+  end
+
+  def sort_by_title_first_letter documents
+    documents.reduce({}) do |by_letter, doc|
+      by_letter[doc.title[0].upcase] ||= [];
+      by_letter[doc.title[0].upcase] << doc;
+      by_letter
+    end
   end
 
 end

@@ -109,9 +109,13 @@ textarea {
 }
 .docu-subtitle {
 	padding: 0; margin: 0;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.3em;
 	font-size: 2.5em;
 	font-family: 'LeagueGothicRegular', Arial, sans-serif;;
+	text-align: center;
+}
+.issue-date {
+	font-weight: bold;
 	text-align: center;
 }
 .tag-list a {
@@ -119,6 +123,18 @@ textarea {
 }
 .editor {
 	margin-top: 0.5em;
+}
+.summary {
+	margin: 2em 0;
+}
+.impact {
+	padding: 0.5em;
+	margin-top: 3em;
+	border: 1px solid black;
+	overflow: hidden;
+	font-size: 90%;
+	font-style: italic;
+	text-align: center;
 }
 .summary textarea {
 	width: 55%;

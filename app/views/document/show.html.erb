@@ -3,17 +3,18 @@
 <nav class="body-nav">
 	<ul class="nav">
 		<li><a href="#id-card">ID Card</a></li>
-		<li><a href="#checklist">Checklist</a></li>
-		<li><a href="#reviews">Critiques</a></li>
-		<li><a href="#options">Alternatives</a></li>
+		<%= raw %(<li><a href="#checklist">Checklist</a></li>) unless @doc.checks.blank? %>
+		<%= raw %(<li><a href="#reviews">Critiques</a></li>) unless @doc.reviews.blank? %>
+		<%= raw %(<li><a href="#options">Alternatives</a></li>) unless @doc.themes.blank? %>
 	</ul>
 	<h2 class="page-title"><a href="#"><span class="prefix">VDF::</span><span class="short-name"><%= @doc.name %></span></a></h2>
 </nav>
 
 <section id="id-card" class="id-card">
-	<div class="poster"><%= image_tag(@doc.poster) %></div>
+	<div class="poster"><%= image_tag(@doc.poster_url) %></div>
 	<h3 class="docu-title"><%= @doc.title %></h3>
 	<h4 class="docu-subtitle"><%= @doc.subtitle %></h4>
+	<p class="issue-date"><%= @doc.year %></p>
 	<div class="tag-list">
 		<a href="#">tags need handling</a>
 		<a href="#">tag2</a>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924232343) do
+ActiveRecord::Schema.define(:version => 20120930172947) do
 
   create_table "checks", :force => true do |t|
     t.string   "claim",       :limit => 140, :null => false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120924232343) do
     t.datetime "updated_at",                                   :null => false
     t.string   "creator",     :limit => 32
     t.string   "creator_url"
+    t.integer  "year"
   end
 
   add_index "documents", ["name"], :name => "index_documents_on_name"

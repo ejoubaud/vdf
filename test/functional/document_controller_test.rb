@@ -4,6 +4,8 @@ require 'test_helper'
 class DocumentControllerTest < ActionController::TestCase
   include ERB::Util
 
+  # ===== SHOW Action =====
+
   test "Document request by name returns a document" do
     assert_routing('/zeitgeist', :controller => "document", :action => "show", :name => "zeitgeist")
   end
@@ -18,6 +20,9 @@ class DocumentControllerTest < ActionController::TestCase
     do_test_reviews(doc.reviews)
     do_test_alternatives(doc.themes)
   end
+
+
+  # ===== NEW Action =====
 
   test "new request returns new document form" do
     assert_routing('/new', :controller => "document", :action => "new")
@@ -47,12 +52,36 @@ class DocumentControllerTest < ActionController::TestCase
     end
   end
 
+
+  # ===== LIST Action =====
+
+  test "list request returns the documents list page" do
+    assert_routing('/list', :controller => "document", :action => "list")
+  end
+
+  test "List request returns a list of all active documents" do
+    get :list
+    assert_response :success
+
+    nb_docs = Document.where(active: true).count
+    assert_select '.body section li', nb_docs
+  end
+
+
+
+
+# ===== *** HELPERS *** =====
+
+private
+
+  # ===== SHOW HELPERS =====
+
   def do_test_id_card(doc)
     assert_select '#id-card' do
-      assert_select('.docu-title', doc.title)
-      assert_select('.docu-subtitle', doc.subtitle)
-      assert_select('.impact', doc.impact)
-      assert_select('.summary', :html => doc.description)
+      assert_select '.docu-title', doc.title
+      assert_select '.docu-subtitle', doc.subtitle
+      assert_select '.impact', doc.impact
+      assert_select '.summary', :html => doc.description
       assert_select('.editor a', doc.creator) unless doc.creator.blank?
       assert_select('.editor a[href=?]', doc.creator_url) unless doc.creator_url.blank?
     end
@@ -69,10 +98,10 @@ class DocumentControllerTest < ActionController::TestCase
 
         escaped = Regexp.escape(h(check.remark))
         remarkCheck = Regexp.new(%(#{escaped}.*))
-        assert_select(li, '.remark>p', remarkCheck)
+        assert_select li, '.remark>p', remarkCheck 
 
-        assert_select(li, %(img[data-longdesc="#{ check.stamp.description }"]), 1)
-        assert_select(li, %(img[alt="#{ check.stamp.title }"]), 1)
+        assert_select li, %(img[data-longdesc="#{ check.stamp.description }"]), 1
+        assert_select li, %(img[alt="#{ check.stamp.title }"]), 1
       end
     end
     assert checks.empty?, "Bad number of checks"
