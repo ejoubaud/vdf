@@ -1,5 +1,3 @@
-<section class="body <%= @doc.name %>">
-
 <nav class="body-nav">
 	<ul class="nav">
 		<li><a href="#id-card">ID Card</a></li>
@@ -23,8 +21,8 @@
 
 	<%= # renders tag with link if url provided, with name if only name provided, nothing otherwise
 		content_tag(:p, :class => 'editor') do
-			link_to_unless @doc.creator_url.blank?, @doc.creator, @doc.creator_url, rel: 'nofollow'
-		end unless @doc.creator.blank?
+			link_to_unless @doc.director_url.blank?, @doc.director, @doc.director_url, rel: 'nofollow'
+		end unless @doc.director.blank?
 	%>
 
 	<div class="summary text-unit"><%= raw @doc.description %></div>
@@ -38,4 +36,3 @@
 <%= render 'reviews', reviews: @doc.reviews %>
 <%= render 'options', themes: @doc.themes %>
 
-</section>

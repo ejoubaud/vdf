@@ -82,8 +82,8 @@ private
       assert_select '.docu-subtitle', doc.subtitle
       assert_select '.impact', doc.impact
       assert_select '.summary', :html => doc.description
-      assert_select('.editor a', doc.creator) unless doc.creator.blank?
-      assert_select('.editor a[href=?]', doc.creator_url) unless doc.creator_url.blank?
+      assert_select('.editor a', doc.director) unless doc.director.blank?
+      assert_select('.editor a[href=?]', doc.director_url) unless doc.director_url.blank?
     end
   end
 

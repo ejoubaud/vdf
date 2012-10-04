@@ -26,51 +26,6 @@ textarea {
 /* ===== LAYOUT ===== */
 
 
-/* Body nav */
-.body-nav {
-	margin-bottom: 1em;
-	overflow: hidden;
-	height: 2em;
-	padding-left: 1em;
-}
-.body-nav .page-title {
-	float: left;
-	display: block;
-	padding: 0; margin: 0;
-	line-height: 2em;
-	font-size: 1em;
-	font-weight: bold;
-}
-.body-nav .short-name {
-	text-transform: capitalize;
-}
-.body-nav ul {
-	/* margin top et bottom à 0 pour reset styles généraux ul */
-	margin: 0 0 0;
-	overflow: hidden;
-	float: right;
-	line-height: 1.75em;
-}
-.body-nav li {
-	padding: 0 0.5em;
-	margin: 1px;
-	border: 1px solid transparent;
-}
-.body-nav li.active {
-	border-color: white;
-}
-.body-nav a {
-	padding: 0;
-	border: 0;
-}
-.fixed-nav {
-	position: fixed;
-	top: 0; left: 0; right: 0;
-	/*padding: 0 1em;*/
-	margin: 0;
-	z-index: 100;
-}
-
 
 /* ID Card */
 

@@ -31,7 +31,7 @@ module Vdf
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.default_locale = :fr
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -58,7 +58,10 @@ module Vdf
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    config.assets.paths << Rails.root.join("app", "assets", "images", "posters")
     config.assets.paths << Rails.root.join("app", "assets", "images", "stamps")
+
+    # For devise, mandatory if Rails 3.1 deployed on Heroku
+    # Option for  forcing your application to not access the DB or load models when precompiling assets
+    config.assets.initialize_on_precompile = false
   end
 end

@@ -1,0 +1,31 @@
+<nav class="body-nav">
+  <h2 class="page-title"><a href="#">Inscription</a></h2>
+</nav>
+
+<section>
+
+<p>L'inscription permet de contribuer de soumettre de nouveaux contenus (descriptions, infos, liens sur les documentaires) pour publication sur le site.</p>
+
+<p>En vous inscrivant, vous acceptez de soumettre vos contributions à la politique éditoriale du site. Vous vous engagez à respecter les autres contributeurs et les décisions des éditeurs.</p>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :login %><br />
+  <%= f.text_field :login %></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Inscription" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+</section>

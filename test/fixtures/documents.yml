@@ -10,8 +10,8 @@ zeitgeist:
                  </ul>
   impact: Impact limité à Internet mais à rententissement signficatif et international.
   poster: zeitgeist.jpg
-  creator: Mouvement Zeitgeist
-  creator_url: http://www.thezeitgeistmovement.com/
+  director: Mouvement Zeitgeist
+  director_url: http://www.thezeitgeistmovement.com/
   year: 2007
   active: true
 
@@ -28,8 +28,8 @@ zdraft:
       </ul>
   impact: Impact fort sur Internet et les réseaux sociaux mais à rententissement signficatif et international.
   poster: zeitgeist.jpg
-  creator: Peter Joseph
-  creator_url: http://www.whoispeterjoseph.com/
+  director: Peter Joseph
+  director_url: http://www.whoispeterjoseph.com/
   year: 2007
   active: false
 
@@ -45,7 +45,7 @@ obsolescence:
     les industries d'URSS, le cartel Phoebus, les iPod, les bas-nylon, les imprimantes...</p>"
   impact: Diffusion télévisuelle internationale (Arte en France). Référence incontournable des débats sur le sujet.
   poster: pret-a-jeter.jpg
-  creator: Cosima Dannoritzer
+  director: Cosima Dannoritzer
   year: 2010
   active: true
 

@@ -73,25 +73,25 @@ class DocumentTest < ActiveSupport::TestCase
     end
   end
 
-  test "Creator URL needs to be a URL" do
+  test "Director URL needs to be a URL" do
     doc = documents(:zdraft).dup
 
-    doc.creator_url = ""
+    doc.director_url = ""
     assert doc.valid?
-    doc.creator_url = "http://www.google.com/"
+    doc.director_url = "http://www.google.com/"
     assert doc.valid?
 
-    doc.creator_url = "htp://www.google.com/"
+    doc.director_url = "htp://www.google.com/"
     assert doc.invalid?
   end
 
-  test "Creator URL needs a creator" do
+  test "Director URL needs a director" do
     doc = documents(:zdraft).dup
-    doc.creator_url = "http://www.facebook.com"
+    doc.director_url = "http://www.facebook.com"
     
-    doc.creator = nil
+    doc.director = nil
     assert doc.invalid?
-    doc.creator = "Mark Zuckerberg"
+    doc.director = "Mark Zuckerberg"
     assert doc.valid?
 
   end

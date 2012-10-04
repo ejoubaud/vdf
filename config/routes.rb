@@ -1,4 +1,6 @@
 Vdf::Application.routes.draw do
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -9,6 +11,8 @@ Vdf::Application.routes.draw do
   match 'create' => 'document#create'
   match 'list' => 'document#list'
   match ':name' => 'document#show'
+
+  match 'vdf/a-propos' => 'vdf#about'
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
@@ -53,6 +57,7 @@ Vdf::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
+  root :to => 'vdf#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,7 +1,5 @@
 <% content_for(:js){ javascript_include_tag :jquery_nested_form, :document_form } %>
 
-<section class="body">
-
 <%= nested_form_for @doc, url: { action: "create" }, as: :doc do |doc| %>
 
 <nav class="body-nav">
@@ -28,7 +26,7 @@
 		<a href="#">tag3</a>
 	</div>
 
-	<p class="editor"><%= doc.text_field :creator, placeholder: "Nom du créateur" %><%= doc.text_field :creator_url, placeholder: "Site du ou sur le créateur" %></p>
+	<p class="editor"><%= doc.text_field :director, placeholder: "Nom du créateur" %><%= doc.text_field :director_url, placeholder: "Site du ou sur le créateur" %></p>
 
 	<div class="summary text-unit"><%= doc.text_area :description, rows: 7, placeholder: "Résumé" %></div>
 	<p class="impact">
@@ -47,4 +45,4 @@
 
 <% end %>
 
-</section>
+
