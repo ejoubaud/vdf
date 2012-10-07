@@ -35,7 +35,7 @@ private
     2.times { doc.reviews.build }
     2.times { doc.themes.build }
     doc.themes.each do |theme|
-      2.times { theme.links.build }
+      2.times { theme.options.build }
     end
     doc
   end

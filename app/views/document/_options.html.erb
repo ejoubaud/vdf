@@ -6,16 +6,16 @@
 		</h2>
 	</header>
 	<ul>
-		<% themes.each do |cat| %>
+		<% themes.each do |theme| %>
 			<li>
-				<h3><%= cat.name %></h3>
+				<h3><%= theme.name %></h3>
 				<ul class="link-list">
 
-					<% cat.links.each do |link| %>
+					<% theme.options.each do |option| %>
 						<li class="link">
-							<h4><%= link_to link.title, link.url %></h4>
+							<h4><%= link_to option.title, option.url %></h4>
 							<div class="text-unit">
-								<p><%= link.description %></p>
+								<p><%= option.description %></p>
 							</div>
 						</li>
 					<% end %>

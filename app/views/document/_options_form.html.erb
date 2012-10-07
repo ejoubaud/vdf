@@ -5,26 +5,26 @@
 		</h2>
 	</header>
 	<ul>
-		<%= doc.fields_for :themes, wrapper: false do |cat| %>
+		<%= doc.fields_for :themes, wrapper: false do |theme| %>
 			<li class="fields">
-				<h3><%= cat.text_field :name, placeholder: "Thème abordé par le documentaire" %></h3>
-				<%= cat.link_to_remove "X" %>
+				<h3><%= theme.text_field :name, placeholder: "Thème abordé par le documentaire" %></h3>
+				<%= theme.link_to_remove "X" %>
 				<ul class="link-list">
 
-					<%= cat.fields_for :links, wrapper: false do |l| %>
+					<%= theme.fields_for :options, wrapper: false do |o| %>
 					<li class="link fields">
-						<%= l.link_to_remove "X" %>
+						<%= o.link_to_remove "X" %>
 						<h4>
-							<%= l.text_field :title, placeholder: "Titre du lien" %>
-							<%= l.text_field :url, placeholder: "URL" %>
+							<%= o.text_field :title, placeholder: "Titre du lien" %>
+							<%= o.text_field :url, placeholder: "URL" %>
 						</h4>
 						<div class="text-unit">
-							<p><%= l.text_area :description, placeholder: "Description", rows: 5 %></p>
+							<p><%= o.text_area :description, placeholder: "Description", rows: 5 %></p>
 						</div>
 					</li>
 					<% end %>
 					<li class="buttons-footer">
-						<%= cat.link_to_add "Ajouter un lien", :links %>
+						<%= theme.link_to_add "Ajouter un lien", :options %>
 					</li>
 
 				</ul>

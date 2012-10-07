@@ -8,7 +8,7 @@ skeptic:
     infos sur le créateur du mouvement et sur son
     financement.
   document: zeitgeist
-  type: DocumentLink
+  type: Review
 
 debunking: 
   title: Debunking Zeitgeist
@@ -17,7 +17,7 @@ debunking:
     Zeitgeist 1, lui portant la contradiction sur un
     mode tout aussi sensationnaliste.
   document: zeitgeist
-  type: DocumentLink
+  type: Review
 
 monnaie:
   title: Cours d'histoire de la monnaie
@@ -26,8 +26,8 @@ monnaie:
     internationaux, avec un traitement des
     objectifs de chaque étape de leurs évolutions
     sans procès d'intention.
-  category: systeme
-  type: CategoryLink
+  theme: systeme
+  type: Option
 
 inflation:
   title: "L'inflation: solution ou péril ?"
@@ -36,8 +36,8 @@ inflation:
     monnaie de différentes écoles de pensée
     économique, et des solutions qu'elles
     préconisent.
-  category: systeme
-  type: CategoryLink
+  theme: systeme
+  type: Option
 
 myths:
   title: Les mythes religieux
@@ -45,8 +45,8 @@ myths:
   description: Site spécialisé dans l'étude des
     mythes, rites et religions, et de leurs
     influences réciproques.
-  category: mythes
-  type: CategoryLink
+  theme: mythes
+  type: Option
 
 
 
@@ -61,4 +61,4 @@ econoclaste:
     confronte les exemples et conclusions
     du documentaire à l'analyse économique."
   document: obsolescence
-  type: DocumentLink
+  type: Review

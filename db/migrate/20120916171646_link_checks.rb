@@ -9,8 +9,8 @@ class LinkChecks < ActiveRecord::Migration
 
     change_table :checks do |t|
       t.remove :stamp
-      t.references :stamp, :null => false
-      t.references :document, :null => false
+      t.references :stamp
+      t.references :document
     end
 
   end

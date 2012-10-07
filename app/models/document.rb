@@ -5,8 +5,8 @@ class Document < ActiveRecord::Base
   attr_accessible :name, :title, :subtitle, :director, :director_url, :description, :impact, :poster, :year, :checks_attributes, :reviews_attributes, :themes_attributes
 
   has_many :checks, dependent: :destroy
-  has_many :reviews, class_name: "DocumentLink", dependent: :destroy
-  has_many :themes, class_name: "LinkCategory", :include => :links, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :themes, :include => :options, dependent: :destroy
 
   mount_uploader :poster, PosterUploader
 
@@ -15,7 +15,7 @@ class Document < ActiveRecord::Base
   accepts_nested_attributes_for :themes,
                                    #Reject linkless themes
                                    reject_if: proc { |a|
-                                       a[:links_attributes].all? do |_, link|
+                                       a[:options_attributes].all? do |_, link|
                                          link.all? do |key, val|
                                            key == '_destroy' || val.blank?
                                          end
@@ -39,7 +39,7 @@ class Document < ActiveRecord::Base
   def self.sheet_associations() 
     [ :checks,
       :reviews,
-      { :themes => :links } ]
+      :themes ]
   end
 
   # Eagerly loads the checklist, reviews and themes with the document

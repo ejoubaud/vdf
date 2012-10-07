@@ -25,7 +25,7 @@ FactoryGirl.define do
       after(:create) do |sheet, eval|
         FactoryGirl.create_list(:check, eval.checks_count, document: sheet)
         FactoryGirl.create_list(:review, eval.reviews_count, document: sheet)
-        FactoryGirl.create_list(:theme, eval.options_count, document: sheet)
+        FactoryGirl.create_list(:options_theme, eval.options_count, document: sheet)
       end
     end
   end
@@ -48,28 +48,28 @@ FactoryGirl.define do
     url         'http://link.com'
     description 'Description du lien'
 
-    factory :document_link, :class => 'DocumentLink', aliases: [ :review ] do
+    factory :review, :class => 'Review' do
       document
     end
 
-    factory :category_link, :class => 'CategoryLink' do
-      category
+    factory :option, :class => 'Option' do
+      theme
     end
   end
 
-  factory :link_category, aliases: [ :category ] do
+  factory :theme do
     name 'Theme'
 
     document
 
     # theme with links
-    factory :option, aliases: [ :theme ] do
+    factory :options_theme do
       ignore do
         links_count 2
       end
 
       after(:create) do |theme, eval|
-        FactoryGirl.create_list(:category_link, eval.links_count, category: theme)
+        FactoryGirl.create_list(:option, eval.links_count, theme: theme)
       end
     end
   end

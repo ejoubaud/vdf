@@ -124,10 +124,10 @@ private
 
         assert_select li, 'h3', h(cat.name)
 
-        do_test_link_list li, cat.links
+        do_test_link_list li, cat.options
       end
     end
-    assert themes.empty?, "Bad number of categories"
+    assert themes.empty?, "Bad number of themes"
   end
 
   def do_test_link_list parent, link_list
@@ -145,7 +145,7 @@ private
       end
     end
     links.inspect
-    assert links.empty?, "Bad number of links"
+    assert links.empty?, "Bad number of options"
   end
 
 end
