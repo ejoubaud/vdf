@@ -3,7 +3,7 @@ require 'test_helper'
 
 class LinkCategoryTest < ActiveSupport::TestCase
   test "Name is mandatory" do
-    theme = link_categories(:systeme)
+    theme = build :link_category
 
     assert_required theme, :name
 
@@ -11,7 +11,7 @@ class LinkCategoryTest < ActiveSupport::TestCase
   end
 
   test "Name has to be short" do
-    theme = link_categories(:systeme)
+    theme = build :link_category
 
     assert_max_length theme, name: 32
   end

@@ -7,25 +7,26 @@ class DocumentControllerTest < ActionController::TestCase
   # ===== SHOW Action =====
 
   test "Document request by name returns a document" do
-    assert_routing('/zeitgeist', :controller => "document", :action => "show", :name => "zeitgeist")
+    assert_routing '/zeitgeist', controller: 'document', action: 'show', name: 'zeitgeist'
   end
 
   test "Showing a document displays its fields" do
-    get :show, { name: 'zeitgeist' }
+    doc = create :document_sheet, name: 'controller_doc', active: true
+
+    get :show, name: 'controller_doc'
     assert_response :success
 
-    doc = documents(:zeitgeist)
-    do_test_id_card(doc)
-    do_test_checklist(doc.checks)
-    do_test_reviews(doc.reviews)
-    do_test_alternatives(doc.themes)
+    do_test_id_card doc
+    do_test_checklist doc.checks
+    do_test_reviews doc.reviews
+    do_test_alternatives doc.themes
   end
 
 
   # ===== NEW Action =====
 
   test "new request returns new document form" do
-    assert_routing('/new', :controller => "document", :action => "new")
+    assert_routing '/new', :controller => "document", :action => "new"
   end
 
   test "New document form has nested forms for checklist, reviews and themes" do
@@ -56,7 +57,7 @@ class DocumentControllerTest < ActionController::TestCase
   # ===== LIST Action =====
 
   test "list request returns the documents list page" do
-    assert_routing('/list', :controller => "document", :action => "list")
+    assert_routing '/list', :controller => "document", :action => "list"
   end
 
   test "List request returns a list of all active documents" do
@@ -81,7 +82,7 @@ private
       assert_select '.docu-title', doc.title
       assert_select '.docu-subtitle', doc.subtitle
       assert_select '.impact', doc.impact
-      assert_select '.summary', :html => doc.description
+      assert_select '.summary', :html => doc.description.strip
       assert_select('.editor a', doc.director) unless doc.director.blank?
       assert_select('.editor a[href=?]', doc.director_url) unless doc.director_url.blank?
     end
@@ -100,7 +101,8 @@ private
         remarkCheck = Regexp.new(%(#{escaped}.*))
         assert_select li, '.remark>p', remarkCheck 
 
-        assert_select li, %(img[data-longdesc="#{ check.stamp.description }"]), 1
+        longdesc_count = check.stamp.description.blank? ? 0 : 1
+        assert_select li, %(img[data-longdesc="#{ check.stamp.description }"]), longdesc_count
         assert_select li, %(img[alt="#{ check.stamp.title }"]), 1
       end
     end
@@ -113,7 +115,7 @@ private
       end
   end
 
-  def do_test_alternatives(themes_list)
+  def do_test_alternatives themes_list
     themes = themes_list.dup
 
     assert_select '#options>ul>li' do |elements|
@@ -128,7 +130,7 @@ private
     assert themes.empty?, "Bad number of categories"
   end
 
-  def do_test_link_list(parent, link_list)
+  def do_test_link_list parent, link_list
     links = link_list.dup
     assert_select(parent, '.link-list li') do |elements|
       elements.each do |li|

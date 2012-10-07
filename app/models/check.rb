@@ -13,9 +13,10 @@ class Check < ActiveRecord::Base
   validates :ref_url, format: { :with => URI::regexp(%w(http https)), :unless => lambda { |d| d.ref_url.blank? } }
 
   def to_s
-    s_doc = document.nil? ? "<document_less>" : document.name
-    s_stamp = stamp.nil? ? "<stamp_less>" : stamp.name
-    s_claim = claim.to_s[0, 30]
-    "#{s_doc}: #{s_stamp}, #{s_claim}..."
+    s_doc = document.nil? ? "<no_doc>" : document.name
+    s_stamp = stamp.nil? ? "<no_stamp>" : stamp.name
+    s_claim = claim.to_s
+    s_claim = "#{ claim.to_s[0, 27] }..." if !s_claim.nil? && s_claim.size > 30
+    "#{s_doc}: #{s_stamp}, #{s_claim}"
   end
 end

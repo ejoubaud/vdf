@@ -35,18 +35,22 @@ class Document < ActiveRecord::Base
   # Several inactive drafts may share the same name, but only one version can be active
   validates_with OnlyOneActiveByNameValidator
 
+  # List of association eagerly fetched by self.sheet
   def self.sheet_associations() 
     [ :checks,
       :reviews,
       { :themes => :links } ]
   end
 
-  def self.sheet(id_or_name)
+  # Eagerly loads the checklist, reviews and themes with the document
+  # (cf. self.sheet_associations)
+  #
+  # id_or_name - Either Integer id or String name
+  # active     - Boolean can be given false to fetch the draft version (default: true)
+  def self.sheet(id_or_name, active = true)
     col = id_or_name.is_a?(Integer) ? :id : :name
-    where(:active => true, col => id_or_name).includes(sheet_associations).first
-  end
 
-  def reject_linkless_themes
+    where(col => id_or_name, :active => active).includes(sheet_associations).first
   end
 
   def to_s

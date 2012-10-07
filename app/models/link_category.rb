@@ -4,7 +4,7 @@ class LinkCategory < ActiveRecord::Base
   belongs_to :document
   has_many :links, dependent: :destroy, class_name: "CategoryLink"
 
-  accepts_nested_attributes_for :links, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :links, reject_if: :all_blank
 
   #validates_presence_of :document
   validates_presence_of :name

@@ -1,11 +1,11 @@
 # encoding: utf-8
 
-# Validates that you are not bringing a new active record when there already is another with the same name
-#
-# * *Args*    :
-#   - +record+ -> Record with id, active and name fields
-#
 class OnlyOneActiveByNameValidator < ActiveModel::Validator
+
+  # Validates that you are not bringing a new active record
+  # when there already is another with the same name
+  #
+  # record - ActiveRecord::Base record with id, active and name fields
   def validate(record)
     if record.active
       activeRecords = record.class.where(name: record.name, active: true)
@@ -15,4 +15,5 @@ class OnlyOneActiveByNameValidator < ActiveModel::Validator
       end
     end
   end
+
 end

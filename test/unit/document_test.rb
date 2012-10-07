@@ -4,7 +4,7 @@ require 'test_helper'
 class DocumentTest < ActiveSupport::TestCase
 
   test "Name, title, descrpiption and active are mandatory" do
-    doc = documents(:zeitgeist)
+    doc = build :document
 
     assert_required doc, :name, :title, :description, :active, :year
 
@@ -12,13 +12,13 @@ class DocumentTest < ActiveSupport::TestCase
   end
 
   test "Name has to be short (<=15 chars)" do
-    doc = documents(:zeitgeist)
+    doc = build :document
     
     assert_max_length doc, name: 15
   end
 
   test "Year is between 1900 and 2025" do
-    doc = documents(:zeitgeist)
+    doc = build :document
     
     doc.year = 1899
     assert doc.invalid?
@@ -30,15 +30,8 @@ class DocumentTest < ActiveSupport::TestCase
     assert doc.valid?
   end
 
-  # Instantiates only the mandatory attributes
-  def new_with_same_name(doc)
-    new_doc = Document.new
-    new_doc.attributes = { name: doc.name, title: doc.title+'-diff', description: doc.description+'-diff', year: doc.year }
-    new_doc
-  end
-
   test "Only one can be active for each name" do
-    doc = documents(:zeitgeist)
+    doc = build :document
 
     assert_nothing_raised do
       doc.active = true
@@ -46,19 +39,16 @@ class DocumentTest < ActiveSupport::TestCase
     end
 
     # Create mode
-    same_name_doc = new_with_same_name(doc)
+    same_name_doc = build :document, name: doc.name
 
-    assert_raise(ActiveRecord::RecordInvalid) do
-      same_name_doc.active = true
-      same_name_doc.save!
-    end
+    same_name_doc.active = true
+    assert same_name_doc.invalid?
 
-    assert_nothing_raised do
-      same_name_doc.active = false
-      same_name_doc.save!
-    end
+    same_name_doc.active = false
+    assert same_name_doc.valid?
 
     # Update mode
+    same_name_doc.save!
     assert_raise(ActiveRecord::RecordInvalid) do
       same_name_doc.active = true
       same_name_doc.save!
@@ -66,15 +56,18 @@ class DocumentTest < ActiveSupport::TestCase
   end
 
   test "Many inactive drafts for each name is fine" do
-    doc = documents(:zdraft)
+    doc = create :document, active: true
 
     assert_nothing_raised do
-      doc.dup.save!
+      3.times do
+        doc = create :document, active: false, name: doc.name
+        assert doc.valid?
+      end
     end
   end
 
   test "Director URL needs to be a URL" do
-    doc = documents(:zdraft).dup
+    doc = build :document, director: "Director"
 
     doc.director_url = ""
     assert doc.valid?
@@ -86,8 +79,7 @@ class DocumentTest < ActiveSupport::TestCase
   end
 
   test "Director URL needs a director" do
-    doc = documents(:zdraft).dup
-    doc.director_url = "http://www.facebook.com"
+    doc = build :document, director_url: "http://www.facebook.com"
     
     doc.director = nil
     assert doc.invalid?
@@ -96,41 +88,32 @@ class DocumentTest < ActiveSupport::TestCase
 
   end
 
-  test "Checklist has accessible elements" do
-    doc = documents(:zeitgeist)
-
-    assert doc.checks.size > 1
-    assert doc.checks[0].is_a? Check
-  end
-
   test "sheet method eagerly loads all you need to display on a doc sheet" do
-    doc = Document.where(name: 'zeitgeist').first
-    assert !doc.association(:checks).loaded?, "Basic requests don't fetch the checklist."
-    assert !doc.association(:reviews).loaded?, "Basic requests don't fetch the reviews."
-    assert !doc.association(:themes).loaded?, "Basic requests don't fetch the themes."
-    doc = documents(:zeitgeist)
-    assert !doc.association(:checks).loaded?, "Fixtures requests don't fetch the checklist."
-    assert !doc.association(:reviews).loaded?, "Fixtures requests don't fetch the reviews."
-    assert !doc.association(:themes).loaded?, "Fixtures requests don't fetch the themes."
+    create :document, name: 'doc', active: true
 
-    sheet = Document.sheet('zeitgeist')
-    assert sheet.association(:checks).loaded?, "Sheet eagerly fetches checklist for given name."
-    assert sheet.association(:reviews).loaded?, "Sheet eagerly fetches reviews for given name."
-    assert sheet.association(:themes).loaded?, "Sheet eagerly fetches themes for given name."
+    assos = [ :checks, :reviews, :themes ]
 
-    id = ActiveRecord::Fixtures.identify(:zeitgeist)
-    sheet = Document.sheet(id)
-    assert sheet.association(:checks).loaded?, "Sheet does the job with id too (checklist)."
-    assert sheet.association(:reviews).loaded?, "Sheet does the job with id too (reviews)."
-    assert sheet.association(:themes).loaded?, "Sheet does the job with id too (themes)."
+    doc = Document.where(name: 'doc').first
+    assos.each { |a| assert !doc.association(a).loaded?, "Basic requests don't fetch the #{a}." }
+
+    sheet = Document.sheet('doc')
+    assos.each { |a| assert sheet.association(a).loaded?,  "sheet eagerly fetches #{a} for given name." }
+
+    id = sheet.id
+    id_sheet = Document.sheet(id)
+    assos.each { |a| assert id_sheet.association(a).loaded?,  "sheet does the job with id too (#{a})." }
 
     assert_nothing_raised do
       assert Document.sheet('wontwork').nil?, "sheet returns nil when no ID/name matches"
     end
+
+    create :document, name: 'doc', active: false
+    assert_equal true, sheet.active,                         "sheet fetches the active version by default"
+    assert_equal false, Document.sheet('doc', false).active, "sheet can fetch the draft version if asked"
   end
 
-  test "to_s" do
-    doc = documents(:zeitgeist)
+  test "to_s returns the doc's name" do
+    doc = build :document
     assert_equal "#{doc}", doc.name
   end
 

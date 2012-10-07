@@ -41,3 +41,7 @@ gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git'
 gem 'dynamic_form'
 gem 'carrierwave'
 gem 'devise'
+
+group :test, :development do
+  gem "factory_girl_rails"
+end
