@@ -37,10 +37,12 @@ gem 'jquery-rails'
 # To use debugger
 gem 'debugger'
 
-gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git'
+gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git' # TODO - Remove when https://github.com/ryanb/nested_form/wiki/How-To:-Render-nested-fields-inside-a-table feature is added in gem repo
 gem 'dynamic_form'
 gem 'carrierwave'
 gem 'devise'
+#gem 'cantango'
+
 
 group :test, :development do
   gem "factory_girl_rails"

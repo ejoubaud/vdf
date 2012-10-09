@@ -82,6 +82,9 @@ class DocumentControllerTest < ActionController::TestCase
 
 
 
+  # ===== EDIT Action =====
+  # TODO - Tester la suppression et le remplacement d'image (doc[remove_poster])
+
 
 # ===== *** HELPERS *** =====
 

@@ -1,6 +1,6 @@
 <section id="id-card" class="id-card">
 	<div class="poster">
-		<% if doc.object.poster %>
+		<% unless doc.object.poster.blank? %>
 			<%= image_tag(doc.object.poster) %>
 			<div>
 				<%= doc.check_box :remove_poster %>

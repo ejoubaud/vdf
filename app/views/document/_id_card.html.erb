@@ -1,5 +1,5 @@
 <section id="id-card" class="id-card">
-	<div class="poster"><%= image_tag(doc.poster_url) %></div>
+	<%= content_tag(:div, image_tag(doc.poster_url), :class => 'poster') unless doc.poster_url.blank? %>
 	<h3 class="docu-title"><%= doc.title %></h3>
 	<h4 class="docu-subtitle"><%= doc.subtitle %></h4>
 	<p class="issue-date"><%= doc.year %></p>
@@ -16,6 +16,6 @@
 	%>
 
 	<div class="summary text-unit"><%= raw doc.description %></div>
-	<%= content_tag(:p, :class => 'impact') { raw doc.impact } unless doc.impact.blank? %>
+	<%= content_tag(:p, raw(doc.impact), :class => 'impact') unless doc.impact.blank? %>
 
 </section>
