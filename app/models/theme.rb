@@ -1,5 +1,5 @@
 class Theme < ActiveRecord::Base
-  attr_accessible :name, :links_attributes
+  attr_accessible :name, :options_attributes
 
   belongs_to :document
   has_many :options, dependent: :destroy

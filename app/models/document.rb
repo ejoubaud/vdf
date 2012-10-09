@@ -2,7 +2,7 @@
 #require 'file_size_validator' 
 
 class Document < ActiveRecord::Base
-  attr_accessible :name, :title, :subtitle, :director, :director_url, :description, :impact, :poster, :year, :checks_attributes, :reviews_attributes, :themes_attributes
+  attr_accessible :name, :title, :subtitle, :director, :director_url, :description, :impact, :poster, :year, :checks_attributes, :reviews_attributes, :themes_attributes, :remove_poster
 
   has_many :checks, dependent: :destroy
   has_many :reviews, dependent: :destroy

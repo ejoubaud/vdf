@@ -74,4 +74,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :user do
+    login                 'vdf'
+    password              'vdfvdf'
+    password_confirmation 'vdfvdf'
+    email                 'vdf@vdf.com'
+  end
+
 end

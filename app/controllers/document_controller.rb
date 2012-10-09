@@ -1,7 +1,7 @@
 # encoding = utf-8
 
 class DocumentController < ApplicationController
-  
+
   def show
     (@doc = Document.sheet(params[:name])) or not_found
   end
@@ -25,6 +25,19 @@ class DocumentController < ApplicationController
   def list
     docs = Document.where(active: true).order(:title)
     @docs_by_letter = sort_by_title_first_letter docs
+  end
+
+  def edit
+    (@doc = Document.sheet(params[:name])) or not_found
+  end
+
+  def update
+    @doc = Document.find(params[:id])
+    @doc.update_attributes(params[:doc])
+    if @doc.save
+      flash[:notice] = "Modifications enregistrées."
+    end
+    render action: :edit
   end
 
 private

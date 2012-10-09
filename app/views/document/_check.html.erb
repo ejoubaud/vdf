@@ -1,0 +1,19 @@
+<li class="check">
+	<div class="claim">
+		<p><%= check.claim %></p>
+	</div>
+	<div class="remark">
+		<div class="picto <%= check.stamp.name %>">
+			<%= image_tag("#{check.stamp.name}.png", alt: check.stamp.title, "data-longdesc" => check.stamp.description ) %>
+		</div>
+		<p>
+			<%= check.remark %>
+			<% unless check.ref_url.blank? %>
+				<span class="source">
+					&ndash;&nbsp;
+					<%= link_to "Réf.", check.ref_url %>
+				</span>
+			<% end %>
+		</p>
+	</div>
+</li>

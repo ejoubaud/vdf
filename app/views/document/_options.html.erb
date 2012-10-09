@@ -12,12 +12,7 @@
 				<ul class="link-list">
 
 					<% theme.options.each do |option| %>
-						<li class="link">
-							<h4><%= link_to option.title, option.url %></h4>
-							<div class="text-unit">
-								<p><%= option.description %></p>
-							</div>
-						</li>
+						<%= render 'option', option: option %>
 					<% end %>
 
 				</ul>

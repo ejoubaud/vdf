@@ -1,0 +1,13 @@
+<nav class="body-nav">
+	<ul class="nav">
+		<li><a href="#id-card">ID Card</a></li>
+		<li><a href="#checklist">Checklist</a></li>
+		<li><a href="#reviews">Critiques</a></li>
+		<li><a href="#options">Alternatives</a></li>
+	</ul>
+	<h2 class="page-title">
+		<span class="prefix">VDF::</span><span class="short-name"><%= doc.text_field :name, placeholder: "Nom court unique" %></span>
+	</h2>
+</nav>
+	
+	<%= doc.error_messages header_message: "Données invalides", message: "Vous devenez respecter certaines contraintes sur les champs suivants:" %>

@@ -1,0 +1,10 @@
+<li class="link fields">
+	<%= option.link_to_remove "X" %>
+	<h4>
+		<%= option.text_field :title, placeholder: "Titre du lien" %>
+		<%= option.text_field :url, placeholder: "URL" %>
+	</h4>
+	<div class="text-unit">
+		<p><%= option.text_area :description, placeholder: "Description", rows: 5 %></p>
+	</div>
+</li>

@@ -64,39 +64,29 @@ cite:before { content: "—"; margin-left: -1.75em; margin-right: 0.5em; opacity
 
 /* ===== COMMON ===== */
 
+/* Links */
+a {
+	color: black;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+
 /* Background colors */
-a, nav, .title, .title:after, h2.section-title, footer.page-footer {
+nav, .title, .title:after, h2.section-title, footer.page-footer {
 	background-color: #0F171D;
 	color: white;
 }
 
 
-
-/* ===== LAYOUT ===== */
-
-/* General */
-a {
-	display: inline-block;
-	padding: 0.25em;
-	border: 1px solid black;
-	text-align: center;
-	background-color: #0F171D;
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 0.9em;
-}
-a:hover {
-	border-color: white;
-	background-color: #353535;
-	box-shadow: 0 0 1em black;
-	text-decoration: underline;
-}
-
+/* Navigation */
 nav ul { display: list-item; list-style: none; }
 nav li { float: left; text-align: center; } 
 nav a {
 	border-color: transparent;
 	background-color: inherit;
+	color: white;
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 1em;
@@ -108,10 +98,14 @@ nav a:hover {
 	text-decoration: underline;
 }
 
+/* Section */
 section {
 	clear: both;
 }
 
+
+
+/* ===== LAYOUT ===== */
 
 
 /* Header Title */
@@ -176,6 +170,15 @@ section {
 }
 
 
+/* Logging section */
+.logging {
+	position: absolute;
+	left: 0; top: 0;
+	padding: 0 1em;
+	font-size: 90%;
+	line-height: 2em;
+}
+
 
 /* Body nav */
 .body-nav {
@@ -211,6 +214,7 @@ section {
 	border-color: white;
 }
 .body-nav a {
+	color: white;
 	padding: 0;
 	border: 0;
 }
@@ -228,6 +232,7 @@ section {
 section.body { 
 	position: relative;
 	width: 100%;
+	min-height: 100%;
 	max-width: 960px;
 	padding-bottom: 2em;
 	margin: auto;

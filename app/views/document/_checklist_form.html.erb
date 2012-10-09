@@ -6,26 +6,9 @@
 	</header>
 	<ul class="checks">
 
-		<%= doc.fields_for :checks, wrapper: false do |c| %>
-			<li class="check fields">
-				<div class="claim">
-					<p><%= c.text_area :claim, rows: 3, placeholder: "Reformulation fidèle et neutre d'une affirmation du documentaire" %></p>
-				</div>
-				<div class="remark">
-					<div class="picto">
-						<%= c.collection_select(:stamp_id, Stamp.all, :id, :title) %>
-					</div>
-					<%= c.link_to_remove "X" %>
-					<p>
-						<%= c.text_area :remark, rows: 3, placeholder: "Remarque" %>
-						<span class="source">
-							 &ndash;&nbsp;
-							 <%= c.text_field :ref_url, placeholder: "Source" %>
-						</span>
-					</p>
-				</div>
-			</li>
-		<% end %>
+		<%=	doc.fields_for :checks, wrapper: false do |check|
+				render 'check_fields', check: check
+			end %>
 			<li>
 				<%= doc.link_to_add "Ajouter une remarque", :checks %>
 			</li>

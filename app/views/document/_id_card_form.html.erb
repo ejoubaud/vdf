@@ -1,0 +1,29 @@
+<section id="id-card" class="id-card">
+	<div class="poster">
+		<% if doc.object.poster %>
+			<%= image_tag(doc.object.poster) %>
+			<div>
+				<%= doc.check_box :remove_poster %>
+				<%= doc.label :remove_poster, "Supprimer l'image" %>
+			</div>
+		<% end%>
+		<%= doc.file_field :poster %>
+		
+	</div>
+	<h3 class="docu-title"><%= doc.text_field :title, placeholder: "Titre" %></h3>
+	<h4 class="docu-subtitle"><%= doc.text_field :subtitle, placeholder: "Sous-titre" %></h4>
+	<p class="issue-date"><%= doc.text_field :year, placeholder: "Année de sortie" %></p>
+	<div class="tag-list">
+		<a href="#">tags need handling</a>
+		<a href="#">tag2</a>
+		<a href="#">tag3</a>
+	</div>
+
+	<p class="editor"><%= doc.text_field :director, placeholder: "Nom du créateur" %><%= doc.text_field :director_url, placeholder: "Site du ou sur le créateur" %></p>
+
+	<div class="summary text-unit"><%= doc.text_area :description, rows: 7, placeholder: "Résumé" %></div>
+	<p class="impact">
+		<%= doc.text_field :impact, placeholder: "Impact" %>
+	</p>
+
+</section>

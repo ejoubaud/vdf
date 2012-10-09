@@ -1,6 +1,6 @@
 <% content_for(:js){ javascript_include_tag :jquery_nested_form, :document_form } %>
 
-<%= nested_form_for @doc, url: { action: 'create' }, as: :doc do |doc| %>
+<%= nested_form_for @doc, url: { action: 'update', id: @doc.id }, as: :doc do |doc| %>
 
 <%= render 'body_nav_form', doc: doc %>
 <%= render 'id_card_form', doc: doc %>
@@ -13,5 +13,3 @@
 </section>
 
 <% end %>
-
-

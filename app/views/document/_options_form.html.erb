@@ -11,18 +11,9 @@
 				<%= theme.link_to_remove "X" %>
 				<ul class="link-list">
 
-					<%= theme.fields_for :options, wrapper: false do |o| %>
-					<li class="link fields">
-						<%= o.link_to_remove "X" %>
-						<h4>
-							<%= o.text_field :title, placeholder: "Titre du lien" %>
-							<%= o.text_field :url, placeholder: "URL" %>
-						</h4>
-						<div class="text-unit">
-							<p><%= o.text_area :description, placeholder: "Description", rows: 5 %></p>
-						</div>
-					</li>
-					<% end %>
+					<%=	theme.fields_for :options, wrapper: false do |o|
+						render 'option_fields', option: o
+					end %>
 					<li class="buttons-footer">
 						<%= theme.link_to_add "Ajouter un lien", :options %>
 					</li>

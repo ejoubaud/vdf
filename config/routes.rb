@@ -8,9 +8,15 @@ Vdf::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
   match 'new' => 'document#new'
-  match 'create' => 'document#create'
+  match 'create' => 'document#create' #, conditions: { method: :post }
+
   match 'list' => 'document#list'
   match ':name' => 'document#show'
+
+  match 'edit/:name' => 'document#edit'
+  match 'update/:id' => 'document#update' #, conditions: { method: :put }
+
+  #resources :document, only: [:new, :create, :update], path: '/'
 
   match 'vdf/a-propos' => 'vdf#about'
 

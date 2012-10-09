@@ -15,6 +15,26 @@
 
 /* ===== COMMON ===== */
 
+/* Links */
+.id-card a, .link-list h4 a, .remove_nested_fields, .add_nested_fields {
+	display: inline-block;
+	padding: 0.25em;
+	border: 1px solid black;
+	text-align: center;
+	background-color: #0F171D;
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+.id-card a:hover, .link-list h4 a:hover, .remove_nested_fields:hover, .add_nested_fields:hover {
+	border-color: white;
+	background-color: #353535;
+	box-shadow: 0 0 1em black;
+	text-decoration: underline;
+}
+
+/* Forms */
 textarea {
 	width: 100%;
 }

@@ -1,22 +1,22 @@
-	<nav class="body-nav">
-		<ul class="nav">
-			<% @docs_by_letter.each do | letter, _ | %>
-				<li><%= link_to letter, "#"+letter.downcase %></li>
+<nav class="body-nav">
+	<ul class="nav">
+		<% @docs_by_letter.each do | letter, _ | %>
+			<li><%= link_to letter, "#"+letter.downcase %></li>
+		<% end %>
+	</ul>
+	<h2 class="page-title"><a href="#">Liste des documentaires</a></h2>
+</nav>
+
+<% @docs_by_letter.each do |letter, docs| %>
+	<section id="<%= letter.downcase %>">
+		<h3><%= letter %></h3>
+		<ul>
+			<% docs.each do |doc| %>
+				<li>
+					<%= link_to doc.title, :action => "show", :name => doc.name %>
+					<%= "(#{doc.year})" unless doc.year.nil? %>
+				</li>
 			<% end %>
 		</ul>
-		<h2 class="page-title"><a href="#">Liste des documentaires</a></h2>
-	</nav>
-
-	<% @docs_by_letter.each do |letter, docs| %>
-		<section id="<%= letter.downcase %>">
-			<h3><%= letter %></h3>
-			<ul>
-				<% docs.each do |doc| %>
-					<li>
-						<%= link_to doc.title, :action => "show", :name => doc.name %>
-						<%= "(#{doc.year})" unless doc.year.nil? %>
-					</li>
-				<% end %>
-			</ul>
-		</section>
-	<% end %>
+	</section>
+<% end %>

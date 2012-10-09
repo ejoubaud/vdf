@@ -3,11 +3,14 @@ require 'test_helper'
 
 class DocumentControllerTest < ActionController::TestCase
   include ERB::Util
+  include Devise::TestHelpers
 
   # ===== SHOW Action =====
 
   test "Document request by name returns a document" do
-    assert_routing '/zeitgeist', controller: 'document', action: 'show', name: 'zeitgeist'
+    doc = create :document, name: 'controller_doc', active: true
+
+    assert_routing '/controller_doc', controller: 'document', action: 'show', name: 'controller_doc'
   end
 
   test "Showing a document displays its fields" do
@@ -57,7 +60,7 @@ class DocumentControllerTest < ActionController::TestCase
   # ===== LIST Action =====
 
   test "list request returns the documents list page" do
-    assert_routing '/list', :controller => "document", :action => "list"
+    assert_routing '/list', :controller => 'document', :action => 'list'
   end
 
   test "List request returns a list of all active documents" do
@@ -66,6 +69,15 @@ class DocumentControllerTest < ActionController::TestCase
 
     nb_docs = Document.where(active: true).count
     assert_select '.body section li', nb_docs
+  end
+
+
+  # ===== EDIT Action =====
+
+  test "edit returns the edit form for a document identified by its name" do
+    doc = create :document, name: 'controller_doc', active: true
+
+    assert_routing '/edit/controller_doc', controller: 'document', action: 'edit', name: 'controller_doc'
   end
 
 
@@ -81,7 +93,7 @@ private
     assert_select '#id-card' do
       assert_select '.docu-title', doc.title
       assert_select '.docu-subtitle', doc.subtitle
-      assert_select '.impact', doc.impact
+      assert_select '.impact', doc.impact unless doc.impact.blank?
       assert_select '.summary', :html => doc.description.strip
       assert_select('.editor a', doc.director) unless doc.director.blank?
       assert_select('.editor a[href=?]', doc.director_url) unless doc.director_url.blank?
