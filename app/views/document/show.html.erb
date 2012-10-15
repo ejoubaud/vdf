@@ -1,12 +1,4 @@
-<nav class="body-nav">
-	<ul class="nav">
-		<li><a href="#id-card">ID Card</a></li>
-		<%= raw %(<li><a href="#checklist">Checklist</a></li>) unless @doc.checks.blank? %>
-		<%= raw %(<li><a href="#reviews">Critiques</a></li>) unless @doc.reviews.blank? %>
-		<%= raw %(<li><a href="#options">Alternatives</a></li>) unless @doc.themes.blank? %>
-	</ul>
-	<h2 class="page-title"><a href="#"><span class="prefix">VDF::</span><span class="short-name"><%= @doc.name %></span></a></h2>
-</nav>
+<%= render 'shared/body_nav', title: @doc.name, nav_list: nav_list(:show, @doc) %>
 
 <%= render 'id_card', doc: @doc %>
 <%= render 'checklist', checklist: @doc.checks %>

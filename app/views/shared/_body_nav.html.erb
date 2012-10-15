@@ -1,0 +1,29 @@
+<% title    ||= "" %>
+<% nav_list ||= {}   # Format: link_title => link %>
+
+<nav class="body-nav">
+
+	<%# displays nav_list %>
+	<% unless nav_list.blank? %>
+		<ul class="nav">
+			<% nav_list.each do |lib, link| %>
+				<li>
+					<%= link_to_unless link.blank?, lib, '#'+link %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<%# displays title %>
+	<h2 class="page-title">
+			<a href="#">
+				<% if title.blank? %>
+					<span class="prefix">VDF</span>
+				<% else %>
+					<span class="prefix">VDF::</span><span class="short-name"><%= title %>
+				<% end %>
+				</span>
+			</a>
+	</h2>
+
+</nav>

@@ -23,8 +23,7 @@ class DocumentController < ApplicationController
   end
 
   def list
-    docs = Document.where(active: true).order(:title)
-    @docs_by_letter = sort_by_title_first_letter docs
+    @docs = Document.where(active: true).order(:title)
   end
 
   def edit
@@ -51,14 +50,6 @@ private
       2.times { theme.options.build }
     end
     doc
-  end
-
-  def sort_by_title_first_letter documents
-    documents.reduce({}) do |by_letter, doc|
-      by_letter[doc.title[0].upcase] ||= [];
-      by_letter[doc.title[0].upcase] << doc;
-      by_letter
-    end
   end
 
 end

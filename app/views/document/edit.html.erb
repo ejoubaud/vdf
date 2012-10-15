@@ -2,7 +2,10 @@
 
 <%= nested_form_for @doc, url: { action: 'update', id: @doc.id }, as: :doc do |doc| %>
 
-<%= render 'body_nav_form', doc: doc %>
+<%= render 'shared/body_nav', title: doc.text_field(:name, placeholder: "Nom court unique"), nav_list: nav_list() %>
+
+<%= doc.error_messages header_message: "Données invalides", message: "Vous devenez respecter certaines contraintes sur les champs suivants:" %>
+
 <%= render 'id_card_form', doc: doc %>
 <%= render 'checklist_form', doc: doc %>
 <%= render 'reviews_form', doc: doc %>

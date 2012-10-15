@@ -1,14 +1,10 @@
-<nav class="body-nav">
-	<ul class="nav">
-		<% @docs_by_letter.each do | letter, _ | %>
-			<li><%= link_to letter, "#"+letter.downcase %></li>
-		<% end %>
-	</ul>
-	<h2 class="page-title"><a href="#">Liste des documentaires</a></h2>
-</nav>
+<% initials = hash_by_title_initial @docs %>
+<% letter_ids = downcase_keys initials %>
 
-<% @docs_by_letter.each do |letter, docs| %>
-	<section id="<%= letter.downcase %>">
+<%= render 'shared/body_nav', title: 'Documentaires', nav_list: letter_ids %>
+
+<% initials.each do |letter, docs| %>
+	<section id="<%= letter_ids[letter] %>">
 		<h3><%= letter %></h3>
 		<ul>
 			<% docs.each do |doc| %>

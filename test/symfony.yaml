@@ -1,0 +1,126 @@
+# apps/frontend/config/routing.yml
+
+# On peut lier un couple module/action à une URL
+jobs_list:
+  url: /jobs
+  param: { module: job, action: index }
+  # L'URL /jobs lance l'action *index* du module *job*
+
+# Param spéciaux module et action
+default:
+  url: /:module/:action/
+  # L'URL /job/new lance l'action *new* du module *job*
+
+# Les autres sont passés en params http
+job_show:
+  url: /job/:id
+  param: { module: job, action: show }
+  # /jobs/5 équivaudra à /job/show?id=5
+
+# apps/frontend/config/routing.yml
+
+# On peut poser des contraintes
+job_update:
+  url: /job/update/:id
+  param: { module: job, action: show }
+  requirements:
+    id: \d+
+    sf_method: [put]
+  # route ssi *id* est numérique et *méthode http* = 'put'
+
+# On peut lier les paramètres à un objet du modèle
+job_search:
+  url: /jobs/:company/:city/
+  class: sfDoctrineRouteCollection
+  options: { model: JobeetJob, type: list }
+  param: { module: job, action: list }
+  # /job/Sopra/Paris => /job/list?company=Sopra&city=Paris
+
+# Le routing sert aussi pour la génération de liens dans la vue :
+#   url_for('job_search', $job)
+#     => '/jobs/' + $job.getCompagny() + '/' + $job.getCity() + '/'
+
+
+
+
+
+currentUser:
+  class: com.avcompris.model.User
+  scope: request
+  value:
+    firstName: Dominique
+    lastName:  Vandrault
+    birthDate:
+      class: org.joda.time.DateTime
+      value: 1978-01-06
+
+
+# config\databases.yml
+
+dev:
+  doctrine:
+    param:
+      dsn:      mysql:host=localhost;dbname=taxe_egout
+      username: root
+      password: 
+test:
+  doctrine:
+    param:
+      dsn:      mysql:host=localhost;dbname=taxe_egout
+      username: root
+      password: 
+
+prod:
+
+
+
+
+
+# config/doctrine/schema.yml
+
+JobeetCategory:
+  columns:
+    name: { type: string(255), notnull: true, unique: true }
+
+JobeetJob:
+  columns:
+    category_id: { type: integer, notnull: true }
+    city:        { type: string(255) }
+    company:     { type: string(255), notnull: true }
+  relations:
+    JobeetCategory:
+      onDelete:     CASCADE
+      local:        category_id
+      foreign:      id
+      foreignAlias: JobeetJobs
+
+
+
+# data/fixtures/categories.yml
+Category:
+  design:
+    name: Design
+  programming:
+    name: Programming
+
+# data/fixtures/jobs.yml
+Job:
+  job_sopra:
+    Category: programming
+    city:     Paris
+    company:  Sopra
+
+
+
+#   Par module, au niveau appli :
+# apps/frontend/config/security.yml
+job:
+  is_secure: false
+
+#   Ou par action, au niveau module :
+# apps/frontend/modules/job/config/security.yml
+index:
+  is_secure: false
+ 
+all:
+  is_secure: true

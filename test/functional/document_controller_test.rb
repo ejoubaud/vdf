@@ -25,6 +25,24 @@ class DocumentControllerTest < ActionController::TestCase
     do_test_alternatives doc.themes
   end
 
+  test "Show body navbar only displays unempty sections" do
+    doc = create :document, name: 'sections_test', active: true
+    get :show, name: 'sections_test'
+    assert_select '.body-nav .nav li', 1
+
+    create :check, document: doc
+    get :show, name: 'sections_test'
+    assert_select '.body-nav .nav li', 2
+
+    create :review, document: doc
+    get :show, name: 'sections_test'
+    assert_select '.body-nav .nav li', 3
+
+    create :options_theme, document: doc
+    get :show, name: 'sections_test'
+    assert_select '.body-nav .nav li', 4
+  end
+
 
   # ===== NEW Action =====
 

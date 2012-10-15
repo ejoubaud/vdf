@@ -12,11 +12,12 @@
 <body class="document" data-spy="scroll" data-target=".body-nav">
 
 <div class="logging">
-	<%=	raw user_signed_in? ?
-			"#{ link_to 'Déconnexion', { controller: 'devise/sessions', action: 'destroy' }, method: :delete } (#{current_user.login})"
-		:
-			"#{ link_to 'Connexion', controller: 'devise/sessions', action: 'new' }"
-	 %>
+	<% if user_signed_in? %>
+		<%= link_to 'Déconnexion', { controller: 'devise/sessions', action: 'destroy' }, method: :delete %>
+		(<%= current_user.login %>)
+	<% else %>
+		<%= link_to 'Connexion', controller: 'devise/sessions', action: 'new' %>
+	<% end %>
 </div>
 
 <nav class="site-nav">
