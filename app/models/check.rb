@@ -1,4 +1,6 @@
 class Check < ActiveRecord::Base
+  include Authored
+
   attr_accessible :claim, :remark, :ref_url, :stamp_id
 
   belongs_to :document

@@ -1,4 +1,6 @@
 class Link < ActiveRecord::Base
+  include Authored
+
   attr_accessible :title, :url, :description
 
   validates_presence_of :url, :title, :description

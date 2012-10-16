@@ -1,7 +1,8 @@
 # encoding: utf-8
-#require 'file_size_validator' 
 
 class Document < ActiveRecord::Base
+  include Authored
+
   attr_accessible :name, :title, :subtitle, :director, :director_url, :description, :impact, :poster, :year, :checks_attributes, :reviews_attributes, :themes_attributes, :remove_poster
 
   has_many :checks, dependent: :destroy

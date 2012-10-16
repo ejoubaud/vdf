@@ -117,4 +117,13 @@ class DocumentTest < ActiveSupport::TestCase
     assert_equal "#{doc}", doc.name
   end
 
+  test "Document can have an author" do
+    author = build :user, login: 'author'
+    doc    = build :document, author: author
+
+    assert_equal User, doc.author.class
+    assert_equal 'author', doc.author.login
+    assert doc.is_a? Authored
+  end
+
 end

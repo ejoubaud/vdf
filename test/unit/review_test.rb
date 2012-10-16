@@ -13,4 +13,13 @@ class ReviewTest < ActiveSupport::TestCase
     assert_equal found.class, Review
   end
 
+  test "Review can have an author" do
+    author  = build :user, login: 'author'
+    link    = build :review, author: author
+
+    assert_equal User, link.author.class
+    assert_equal 'author', link.author.login
+    assert link.is_a? Authored
+  end
+
 end

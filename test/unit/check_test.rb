@@ -67,4 +67,13 @@ class CheckTest < ActiveSupport::TestCase
     assert_equal "#{check}", "<no_doc>: <no_stamp>, "
   end
 
+  test "Check can have an author" do
+    author = build :user, login: 'author'
+    check    = build :check, author: author
+
+    assert_equal User, check.author.class
+    assert_equal 'author', check.author.login
+    assert check.is_a? Authored
+  end
+
 end

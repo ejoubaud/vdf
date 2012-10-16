@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121007104542) do
+ActiveRecord::Schema.define(:version => 20121016114657) do
 
   create_table "checks", :force => true do |t|
     t.string   "claim",       :limit => 140, :null => false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121007104542) do
     t.datetime "updated_at",                 :null => false
     t.integer  "stamp_id"
     t.integer  "document_id"
+    t.integer  "author_id"
   end
 
   create_table "documents", :force => true do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20121007104542) do
     t.string   "director",     :limit => 32
     t.string   "director_url"
     t.integer  "year"
+    t.integer  "author_id"
   end
 
   add_index "documents", ["name"], :name => "index_documents_on_name"
@@ -49,6 +51,13 @@ ActiveRecord::Schema.define(:version => 20121007104542) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "theme_id"
+    t.integer  "author_id"
+  end
+
+  create_table "person", :id => false, :force => true do |t|
+    t.string  "nom",    :limit => 32
+    t.string  "prenom", :limit => 32
+    t.integer "age"
   end
 
   create_table "stamps", :force => true do |t|
