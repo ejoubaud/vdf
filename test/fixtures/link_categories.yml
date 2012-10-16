@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-systeme:
-  name: Système monétaire
-  document: zeitgeist
-
-mythes:
-  name: Mythologies et religions
-  document: zeitgeist
