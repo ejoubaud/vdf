@@ -1,7 +1,17 @@
 <% initials = hash_by_title_initial @docs %>
 <% letter_ids = downcase_keys initials %>
 
-<%= render 'shared/body_nav', title: 'Documentaires', nav_list: letter_ids %>
+<%= render 'shared/body_nav', title: @title, nav_list: letter_ids %>
+
+<% if @action == 'edit' %>
+	<section class="edit-disclaimer">
+		<h3>Cr&eacute;er ou modifier une fiche</h3>
+		<div class="text-unit">
+			<p>La liste ci-dessous vous donne acc&egrave;s &agrave; aux brouillons des documentaires.</p>
+		</div>
+		<%= link_to 'Nouveau documentaire', { controller: 'document', action: 'new' }, :class => 'new' %>
+	</section>
+<% end %>
 
 <% initials.each do |letter, docs| %>
 	<section id="<%= letter_ids[letter] %>">
@@ -9,10 +19,11 @@
 		<ul>
 			<% docs.each do |doc| %>
 				<li>
-					<%= link_to doc.title, :action => "show", :name => doc.name %>
+					<%= link_to doc.title, :action => @action, :name => doc.name %>
 					<%= "(#{doc.year})" unless doc.year.nil? %>
 				</li>
 			<% end %>
 		</ul>
 	</section>
 <% end %>
+

@@ -14,3 +14,8 @@ impugnin:
     Accusation prêtant sans fondement des 
     intentions condamnables à sa cible
 
+truestamp:
+  name: 'true'
+  title: Vrai
+  description: Vérifié et fondé
+

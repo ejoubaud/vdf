@@ -15,24 +15,6 @@
 
 /* ===== COMMON ===== */
 
-/* Links */
-.id-card a, .link-list h4 a, .remove_nested_fields, .add_nested_fields {
-	display: inline-block;
-	padding: 0.25em;
-	border: 1px solid black;
-	text-align: center;
-	background-color: #0F171D;
-	color: white;
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 0.9em;
-}
-.id-card a:hover, .link-list h4 a:hover, .remove_nested_fields:hover, .add_nested_fields:hover {
-	border-color: white;
-	background-color: #353535;
-	box-shadow: 0 0 1em black;
-	text-decoration: underline;
-}
 
 /* Forms */
 textarea {
@@ -81,15 +63,17 @@ textarea {
 	font-family: 'LeagueGothicRegular', Arial, sans-serif;
 	text-transform: uppercase;
 	text-align: center;
+	line-height: 1;
 }
 .docu-subtitle {
 	padding: 0; margin: 0;
-	margin-bottom: 0.3em;
 	font-size: 2.5em;
 	font-family: 'LeagueGothicRegular', Arial, sans-serif;;
 	text-align: center;
+	line-height: 1;
 }
 .issue-date {
+	margin-top: 0;
 	font-weight: bold;
 	text-align: center;
 }
@@ -152,6 +136,7 @@ textarea {
 }
 .check .claim p, .check .remark p {
 	margin: 0.5em;
+	line-height: 1;
 }
 .check .remark p {
 	padding-left: 100px;
@@ -203,15 +188,19 @@ textarea {
 	-webkit-border-radius: 1em; /* Safe list of prefixes from CSS3 Please */
 	border-radius: 1em;
 }
-.link-list .link .text-unit, .link-list li h4 {
+.link-list .link .text-unit {
 	margin: 0 1em;
 }
 .link-list .link h4 {
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+	margin: 1em 1em 0.5em 1em;
 }
 .link-list .link h4 a {
 	display: block;
+}
+.link-list .link p {
+	margin: 0 0 1em 0;
+	padding: 0;
+	line-height: 1;
 }
 .link-list .buttons-footer {
 	width: 100%;

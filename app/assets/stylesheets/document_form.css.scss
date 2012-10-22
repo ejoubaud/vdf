@@ -1,0 +1,19 @@
+/**
+ *= require jquery.wysiwyg
+ */
+
+
+div.wysiwyg {
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border-color: #CCC;
+
+	> div {
+		display: none;
+	}
+	iframe {
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+}

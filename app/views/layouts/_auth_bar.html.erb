@@ -1,0 +1,10 @@
+<div class="auth-bar">
+	<% if user_signed_in? %>
+		<%= link_to 'Edition', { controller: 'document', action: 'edit_list' } %>
+		|
+		<%= link_to 'Déconnexion', { controller: 'devise/sessions', action: 'destroy' }, method: :delete %>
+		(<%= current_user.login %>)
+	<% else %>
+		<%= link_to 'Connexion', controller: 'devise/sessions', action: 'new' %>
+	<% end %>
+</div>

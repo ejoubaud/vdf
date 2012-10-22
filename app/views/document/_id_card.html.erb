@@ -10,7 +10,7 @@
 	</div>
 
 	<%= # renders tag with link if url provided, with name if only name provided, nothing otherwise
-		content_tag(:p, :class => 'editor') do
+		content_tag(:p, :class => 'director') do
 			link_to_unless doc.director_url.blank?, doc.director, doc.director_url, rel: 'nofollow'
 		end unless doc.director.blank?
 	%>

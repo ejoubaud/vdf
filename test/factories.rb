@@ -22,10 +22,10 @@ FactoryGirl.define do
         options_count 2
       end
 
-      after(:create) do |sheet, eval|
-        FactoryGirl.create_list(:check, eval.checks_count, document: sheet)
-        FactoryGirl.create_list(:review, eval.reviews_count, document: sheet)
-        FactoryGirl.create_list(:options_theme, eval.options_count, document: sheet)
+      after(:build) do |sheet, eval|
+        sheet.checks  = FactoryGirl.build_list(:check, eval.checks_count, document: sheet)
+        sheet.reviews = FactoryGirl.build_list(:review, eval.reviews_count, document: sheet)
+        sheet.themes  = FactoryGirl.build_list(:options_theme, eval.options_count, document: sheet)
       end
     end
   end
@@ -68,17 +68,17 @@ FactoryGirl.define do
         links_count 2
       end
 
-      after(:create) do |theme, eval|
-        FactoryGirl.create_list(:option, eval.links_count, theme: theme)
+      after(:build) do |theme, eval|
+        theme.options = FactoryGirl.build_list(:option, eval.links_count, theme: theme)
       end
     end
   end
 
   factory :user do
-    login                 'vdf'
+    sequence(:login)       {|n| "user_#{n}" }
+    sequence(:email)      {|n| "user_#{n}@vdf.com" }
     password              'vdfvdf'
     password_confirmation 'vdfvdf'
-    email                 'vdf@vdf.com'
   end
 
 end

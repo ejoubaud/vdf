@@ -9,4 +9,9 @@ class UserTest < ActiveSupport::TestCase
 
     assert_nothing_raised { user.save! }
   end
+
+  test "to_s returns login" do
+    user = build :user
+    assert_equal user.login, "#{user}"
+  end
 end

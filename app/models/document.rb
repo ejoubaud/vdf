@@ -3,7 +3,7 @@
 class Document < ActiveRecord::Base
   include Authored
 
-  attr_accessible :name, :title, :subtitle, :director, :director_url, :description, :impact, :poster, :year, :checks_attributes, :reviews_attributes, :themes_attributes, :remove_poster
+  attr_accessible :title, :subtitle, :director, :director_url, :description, :impact, :poster, :year, :checks_attributes, :reviews_attributes, :themes_attributes, :remove_poster
 
   has_many :checks, dependent: :destroy
   has_many :reviews, dependent: :destroy
@@ -36,13 +36,6 @@ class Document < ActiveRecord::Base
   # Several inactive drafts may share the same name, but only one version can be active
   validates_with OnlyOneActiveByNameValidator
 
-  # List of association eagerly fetched by self.sheet
-  def self.sheet_associations() 
-    [ :checks,
-      :reviews,
-      :themes ]
-  end
-
   # Eagerly loads the checklist, reviews and themes with the document
   # (cf. self.sheet_associations)
   #
@@ -51,7 +44,26 @@ class Document < ActiveRecord::Base
   def self.sheet(id_or_name, active = true)
     col = id_or_name.is_a?(Integer) ? :id : :name
 
-    where(col => id_or_name, :active => active).includes(sheet_associations).first
+    where(col => id_or_name, :active => active)
+      .includes([ :checks, :reviews, :themes ])
+      .first
+  end
+
+  # Applies a block to each line of the sheet (checks and links)
+  def each_line
+    checks.each { |c| yield c }
+    reviews.each { |r| yield r }
+    themes.each do |t|
+      t.options.each { |o| yield o }
+    end
+  end
+
+  # Assigns an author to the doc and to its lines (checks and links) if new
+  def assign_author! user
+    self.author ||= user
+    each_line do |l|
+      l.author ||= user
+    end
   end
 
   def to_s

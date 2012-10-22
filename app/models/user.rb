@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login
   # attr_accessible :title, :body
   validates :login, presence: true
+
+  def to_s
+    login
+  end
 end

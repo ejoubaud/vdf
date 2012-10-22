@@ -8,7 +8,7 @@ class CheckTest < ActiveSupport::TestCase
   test "Claim, stamp, and remark are mandatory" do
     check = build :check
 
-    assert_required check, :claim, :remark
+    assert_required check, :claim, :remark, :stamp
 
     assert check.valid?
   end

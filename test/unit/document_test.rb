@@ -89,7 +89,7 @@ class DocumentTest < ActiveSupport::TestCase
   end
 
   test "sheet method eagerly loads all you need to display on a doc sheet" do
-    create :document, name: 'doc', active: true
+    create :document_sheet, name: 'doc', active: true
 
     assos = [ :checks, :reviews, :themes ]
 
@@ -97,11 +97,17 @@ class DocumentTest < ActiveSupport::TestCase
     assos.each { |a| assert !doc.association(a).loaded?, "Basic requests don't fetch the #{a}." }
 
     sheet = Document.sheet('doc')
-    assos.each { |a| assert sheet.association(a).loaded?,  "sheet eagerly fetches #{a} for given name." }
+    assos.each do |a|
+      assert sheet.association(a).loaded?, "sheet eagerly fetches #{a} for given name."
+      assert !sheet.send(a).blank?,        "sheet loaded #{a} is not blank."
+    end
 
     id = sheet.id
     id_sheet = Document.sheet(id)
-    assos.each { |a| assert id_sheet.association(a).loaded?,  "sheet does the job with id too (#{a})." }
+    assos.each do |a|
+      assert sheet.association(a).loaded?, "sheet does the job with id too (#{a})."
+      assert !sheet.send(a).blank?,        "sheet loaded by id #{a} is not blank."
+    end
 
     assert_nothing_raised do
       assert Document.sheet('wontwork').nil?, "sheet returns nil when no ID/name matches"
@@ -124,6 +130,56 @@ class DocumentTest < ActiveSupport::TestCase
     assert_equal User, doc.author.class
     assert_equal 'author', doc.author.login
     assert doc.is_a? Authored
+  end
+
+  test "each_line applies a block to each check, review and option of the sheet" do
+    sheet = create :document_sheet
+
+    reference = ""
+    sheet.checks.each { |c| reference << c.to_s }
+    sheet.reviews.each { |r| reference << r.to_s }
+    sheet.themes.each do |t|
+      t.options.each { |o| reference << o.to_s }
+    end
+    assert !reference.blank?
+
+    result = ""
+    sheet.each_line { |l| result << l.to_s }
+
+    assert_equal reference, result
+  end
+
+  test "assign_author! assigns an author to all new documents, links and checks" do
+    sheet = build :document_sheet
+
+    assert_nil sheet.author
+    sheet.each_line { |l| assert_nil l.author }
+
+    user1 = create :user
+    sheet.assign_author! user1
+
+    assert_equal user1, sheet.author
+    sheet.each_line { |l| assert_equal user1, sheet.author }
+
+    # Saving, creating new lines and assigning them a new author
+    sheet.save!
+    sheet.checks            << build(:check,  document: sheet)
+    sheet.reviews           << build(:review, document: sheet)
+    sheet.themes[0].options << build(:option, theme: sheet.themes[0])
+    new_lines_count = 3
+
+    user2 = create :user
+    sheet.assign_author! user2
+
+    assert_equal user1, sheet.author, "The sheet keeps its original author"
+    sheet.each_line do |l|
+      if user2 == l.author
+        new_lines_count -= 1
+      else
+        assert_equal user1, l.author, "All old lines keep their original author"
+      end
+    end
+    assert_equal 0, new_lines_count,  "All new lines have the new author"
   end
 
 end

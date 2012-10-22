@@ -13,6 +13,7 @@ Vdf::Application.routes.draw do
   match 'list' => 'document#list'
   match ':name' => 'document#show'
 
+  match 'edit/list' => 'document#edit_list'
   match 'edit/:name' => 'document#edit'
   match 'update/:id' => 'document#update' #, conditions: { method: :put }
 

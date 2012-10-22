@@ -1,9 +1,10 @@
-<% content_for(:js){ javascript_include_tag :jquery_nested_form, :document_form } %>
+<% content_for(:css){ stylesheet_link_tag :document_form } %>
+<% content_for(:js) { javascript_include_tag :jquery_nested_form, :document_form } %>
 
 <%= nested_form_for @doc, url: { action: 'create' }, as: :doc do |doc| %>
 
 
-<%= render 'shared/body_nav', title: doc.text_field(:name, placeholder: "Nom court unique"), nav_list: nav_list() %>
+<%= render 'shared/body_nav', title: text_field_tag(:name, nil, placeholder: "Nom court unique"), nav_list: nav_list() %>
 
 <%= doc.error_messages header_message: "Données invalides", message: "Vous devenez respecter certaines contraintes sur les champs suivants:" %>
 

@@ -1,6 +1,4 @@
-<nav class="body-nav">
-  <h2 class="page-title"><a href="#">A propos</a></h2>
-</nav>
+<%= render 'shared/body_nav', title: "A propos" %>
 
 <section>
 	<header>
@@ -13,7 +11,7 @@
 
 	<p>Sa m&eacute;thode&nbsp;: v&eacute;rifier les faits, exposer les biais, relayer les critiques et proposer des sources alternatives pour s'initier aux sujets trait&eacute;s. Le tout sous une forme synth&eacute;tique et accessible.</p>
 
-	<p>Il s'agit d'une plateforme o&ugrave; ceux qui ont produit  des recherches, des v&eacute;rifications, des approfondissements ou des critiques d'un documentaire, ou des th&egrave;mes qu'il aborde, peuvent les mettre &agrave; la port&eacute;e de tous.</p>
+	<p>Il s'agit d'une plateforme o&ugrave; ceux qui ont produit des recherches, des v&eacute;rifications, des critiques ou des approfondissements, d'un documentaire ou des th&egrave;mes qu'il aborde, peuvent les mettre &agrave; la disposition de tous.</p>
 
 </section>
 
@@ -23,18 +21,19 @@
 			Pourquoi quoi faire ?
 		</h2>
 	</header>
+	<div class="text-unit">
+		<p>Un documentaire vid&eacute;o est presque toujours un outil de vulgarisation s'adressant &agrave; un public pas ou peu initi&eacute; au sujet qu'il pr&eacute;sente.</p>
 
-	<p>Un documentaire vid&eacute;o est presque toujours un outil de vulgarisation s'adressant &agrave; un public pas ou peu initi&eacute; au sujet qu'il pr&eacute;sente.</p>
+		<p>Or, les documentaires ne diffusent pas que des informations. Ils v&eacute;hiculent aussi des valeurs, des opinions discutables sur des sujets controvers&eacute;s et m&ecirc;me des appels &agrave; l'action.</p>
 
-	<p>Or, les documentaires ne diffusent pas que des informations. Ils v&eacute;hiculent aussi des valeurs, des opinions discutables sur des sujets clivants et m&ecirc;me des appels &agrave; l'action.</p>
+		<p>Pour le spectateur novice, il peut &ecirc;tre impossible a priori de distinguer un fait av&eacute;r&eacute; d'une simple th&eacute;orie ou opinion, de diff&eacute;rencier un exemple extr&ecirc;me et un cas g&eacute;n&eacute;ral ou de v&eacute;rifier les qualifications d'un intervenant.</p>
 
-	<p>Pour le spectateur novice, il peut &ecirc;tre impossible a priori de distinguer un fait av&eacute;r&eacute; d'une simple th&eacute;orie ou opinion, de diff&eacute;rencier un exemple extr&ecirc;me et un cas g&eacute;n&eacute;ral ou de v&eacute;rifier les qualifications d'un intervenant.</p>
+		<p>Souvent, il ne lui viendrait pas &agrave; l'id&eacute;e de remettre en cause un documentaire support&eacute; par un m&eacute;dia r&eacute;put&eacute; ou une communaut&eacute; nombreuse.</p>
 
-	<p>Souvent, il ne lui viendrait pas &agrave; l'id&eacute;e de remettre en cause un documentaire support&eacute; par un m&eacute;dia r&eacute;put&eacute; ou une communaut&eacute; nombreuse.</p>
+		<p>M&ecirc;me pour ceux qui en prennent l'initiative, les recherches sont longues et co&ucirc;teuses, parfois au point de d&eacute;courager.</p>
 
-	<p>M&ecirc;me pour ceux qui en prennent l'initiative, les recherches sont longues et co&ucirc;teuses, parfois au point de d&eacute;courager.</p>
-
-	<p>Ce site est n&eacute; du sentiment que le spectateur devrait pouvoir vérifier rapidement les faits qu'on lui pr&eacute;sente, et acc&eacute;der sans effort &agrave; des points de vue diff&eacute;rents de ceux qui lui ont &eacute;t&eacute; pr&eacute;sent&eacute;s.</p>
+		<p>Ce site est n&eacute; du sentiment que le spectateur devrait pouvoir vérifier rapidement les faits qu'on lui pr&eacute;sente, et acc&eacute;der sans effort &agrave; des points de vue diff&eacute;rents de ceux par lesquels on l'a introduit aux sujets trait&eacute;s.</p>
+	</div>
 </section>
 
 <section>
@@ -44,13 +43,15 @@
 		</h2>
 	</header>
 
-	<p>Au contraire !</p>
+	<div class="text-unit">
+		<p>Au contraire !</p>
 
-	<p>Non seulement nous n'avons rien contre le fait d'exprimer ses opinions par tous les moyens possibles, mais notre démarche consiste justement &agrave; relayer des points de vue divers.</p>
+		<p>Non seulement nous n'avons rien contre le fait d'exprimer ses opinions par tous les moyens possibles, mais notre démarche consiste justement &agrave; relayer des points de vue divers.</p>
 
-	<p>Nous sommes conscients qu'aucune information n'est compl&egrave;tement neutre. Nous ne militons pas pour la neutralit&eacute; universelle.</p>
+		<p>Nous sommes conscients qu'aucune information n'est compl&egrave;tement neutre. Nous ne militons pas pour la neutralit&eacute; universelle.</p>
 
-	<p>En revanche nous sommes convaincus qu'il est pr&eacute;f&eacute;rable de mettre &agrave; disposition des spectateurs une information concernant les biais auxquels ils sont expos&eacute;s, ainsi que des passerelles vers des points de vue diff&eacute;rents.</p>
+		<p>En revanche nous sommes convaincus qu'il est pr&eacute;f&eacute;rable de mettre &agrave; disposition des spectateurs une information concernant les biais auxquels ils sont expos&eacute;s, ainsi que des passerelles vers des opinions diff&eacute;rentes.</p>
+	</div>
 
 </section>
 
@@ -61,9 +62,11 @@
 		</h2>
 	</header>
 
-	<p>Tout le monde peut s'inscrire pour contribuer&nbsp;: sp&eacute;cialiste d'un domaine abord&eacute;, journaliste, blogueur, passionn&eacute; de d&eacute;bat public...</p>
+	<div class="text-unit">
+		<p>Tout le monde peut s'inscrire pour contribuer&nbsp;: sp&eacute;cialiste d'un domaine abord&eacute;, journaliste, blogueur, passionn&eacute; de d&eacute;bat public...</p>
 
-	<p>Une &eacute;quipe de mod&eacute;ration est charg&eacute;e de s'assurer du s&eacute;rieux des informations fournies et de veiller au respect des contraintes de format visant &agrave; garantir une exp&eacute;rience de qualit&eacute; pour les lecteurs.</p>
+		<p>Une &eacute;quipe de mod&eacute;ration est charg&eacute;e de s'assurer du s&eacute;rieux des informations fournies et de veiller au respect des contraintes de format visant &agrave; garantir une exp&eacute;rience de qualit&eacute; pour les lecteurs.</p>
+	</div>
 
 </section>
 
@@ -74,13 +77,16 @@
 		</h2>
 	</header>
 
-	<p>Nous aurions pu cibler la presse, l'&eacute;dition ou les communications des grands groupes, mais nous avons choisi de nous concentrer sur les documentaires.</p>
+	<div class="text-unit">
+		<p>Nous aurions pu cibler la presse, l'&eacute;dition ou les communications des grands groupes, mais nous avons choisi de nous concentrer sur les documentaires.</p>
 
-	<p>Nous pensons qu'il s'agit de la fa&ccedil;on la plus efficace d'employer nos moyens limit&eacute;s, et ce pour trois raisons&nbsp;:</p>
-	<ul>
-		<li>Ils s'adressent &agrave; un public souvent mal arm&eacute; pour les traiter avec recul, car non initi&eacute; au sujet qu'ils traitent.</li>
-		<li>Du fait de leur accessibilit&eacute;, de leur format et de leur diffusion &agrave; la t&eacute;l&eacute;vision ou sur les r&eacute;seaux sociaux, ils ont un impact in&eacute;gal&eacute; parmi les m&eacute;dias d'opinion.</li>
-		<li>Il n'en sort pas tant que &ccedil;a tous les ans&nbsp;: le volume de travail pour s'en occuper est accessible &agrave; une petite &eacute;quipe b&eacute;n&eacute;vole et les infos produites restent utiles aussi longtemps que le documentaire reste visible.</li>
-	</ul>
+		<p>Nous pensons qu'il s'agit de la fa&ccedil;on la plus efficace d'employer nos moyens limit&eacute;s, et ce pour trois raisons&nbsp;:</p>
+		<ul>
+			<li>Ils s'adressent &agrave; un public souvent mal arm&eacute; pour les traiter avec recul, car non initi&eacute; au sujet qu'ils traitent.</li>
+			<li>Du fait de leur accessibilit&eacute;, de leur format et de leur diffusion &agrave; la t&eacute;l&eacute;vision ou sur les r&eacute;seaux sociaux, ils ont un impact in&eacute;gal&eacute; parmi les m&eacute;dias d'opinion.</li>
+			<li>Il n'en sort pas tant que &ccedil;a tous les ans&nbsp;: le volume de travail pour s'en occuper est accessible &agrave; une petite &eacute;quipe b&eacute;n&eacute;vole et les infos produites restent utiles aussi longtemps que le documentaire reste visible.</li>
+		</ul>
+	</div>
 
 </section>
+

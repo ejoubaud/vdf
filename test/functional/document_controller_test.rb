@@ -50,7 +50,15 @@ class DocumentControllerTest < ActionController::TestCase
     assert_routing '/new', :controller => "document", :action => "new"
   end
 
+  test "new is for signed_in users only" do
+    get :new
+    assert_response :redirect
+    assert_redirected_to controller: 'devise/sessions', action: 'new'
+  end
+
   test "New document form has nested forms for checklist, reviews and themes" do
+    sign_in_new_user
+
     get :new
     assert_response :success
 
@@ -72,6 +80,28 @@ class DocumentControllerTest < ActionController::TestCase
       assert_select 'input', 3*nb_links
       assert_select 'textarea', nb_links
     end
+  end
+
+
+  # ===== CREATE Action =====
+
+  test "create request routes to the create action" do
+    assert_routing '/create', :controller => "document", :action => "create"
+  end
+
+  test "create is for signed_in users only" do
+    post :create
+    assert_response :redirect
+    assert_redirected_to controller: 'devise/sessions', action: 'new'
+  end
+
+  test "create assigns logged_in user as author to the new document and its lines" do
+    doc = attributes_for(:document).except(:name)
+    user = sign_in_new_user
+
+    post :create, doc: doc, name: 'created_doc'
+    created = Document.sheet 'created_doc'
+    assert_equal user, created.author
   end
 
 
@@ -98,15 +128,59 @@ class DocumentControllerTest < ActionController::TestCase
     assert_routing '/edit/controller_doc', controller: 'document', action: 'edit', name: 'controller_doc'
   end
 
+  test "edit is for signed_in users only" do
+    doc = create :document, name: 'controller_doc', active: true
 
+    post :edit, name: 'controller_doc'
+    assert_response :redirect
+    assert_redirected_to controller: 'devise/sessions', action: 'new'
+  end
 
-  # ===== EDIT Action =====
   # TODO - Tester la suppression et le remplacement d'image (doc[remove_poster])
+
+
+  # ===== UPDATE Action =====
+
+  test "update request routes to the update action" do
+    assert_routing '/update/1', :controller => "document", :action => "update", id: "1"
+  end
+
+  test "update is for signed_in users only" do
+    doc = create :document
+
+    post :update, id: doc.id
+    assert_response :redirect
+    assert_redirected_to controller: 'devise/sessions', action: 'new'
+  end
+
+  test "update assigns logged_in user as author to the document's new lines" do
+    doc = create :document, name: 'to_update', active: true
+    user1 = create :user
+    doc.assign_author! user1
+    doc.save!
+
+    stamp = create :stamp
+    user2 = sign_in_new_user
+    doc_attr = attributes_for(:document, name: 'to_update').except(:name)
+    check_attr = attributes_for(:check).merge(stamp_id: stamp.id)
+
+    post :update, id: doc.id, doc: doc_attr.merge(checks_attributes: { "new_1111" => check_attr })
+    updated = Document.sheet 'to_update'
+    assert_equal user1, updated.author
+    assert_equal user2, updated.checks.first.author
+  end
 
 
 # ===== *** HELPERS *** =====
 
 private
+
+  # ===== GENERAL HELPERS =====
+  def sign_in_new_user
+    user = create :user
+    sign_in user
+    user
+  end
 
   # ===== SHOW HELPERS =====
 

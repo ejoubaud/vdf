@@ -46,11 +46,11 @@ h4 { margin-bottom: 0.5em; }
 
 /* General text */
 /* body { font-family: 'Heiti TC Light', Helvetica, Verdana, sans-serif; }*/
-body { font-family: "museo-sans-1","museo-sans-2", Helvetica, Arial, sans-serif; }
-p { margin-bottom: 1em; }
+body { font-family: Helvetica, Arial, sans-serif; line-height: 1.5; }
+p, ul, ol, form { margin: 1.714em 0 1em; }
 ul, ol { margin-top: 0.5em; margin-bottom: 0.5em; }
 .text-unit ul, .text-unit ol { list-style: disc outside; margin-left: 2em; }
-li { margin-top: 0.5em; margin-bottom: 0.5em; }
+.text-unit ol ol, .text-unit ol ul, .text-unit ul ol, .text-unit ul ul { list-style: circle outside; margin-left: 2em; }
 
 /* Quotes (adapted from type-a-file.com Editorial theme */
 
@@ -72,6 +72,26 @@ a {
 a:hover {
 	text-decoration: none;
 }
+.new, .director a, .tag-list a, .link-list h4 a, .remove_nested_fields, .add_nested_fields {
+	display: inline-block;
+	margin-bottom: 0.5em;
+	padding: 0.25em;
+	border: 1px solid black;
+	text-align: center;
+	background-color: #0F171D;
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 0.9em;
+	line-height: 1;
+}
+.new:hover, .director a:hover, .tag-list a:hover, .link-list h4 a:hover, .remove_nested_fields:hover, .add_nested_fields:hover {
+	border-color: white;
+	background-color: #353535;
+	box-shadow: 0 0 0.5em black;
+	text-decoration: underline;
+}
+
 
 /* Background colors */
 nav, .title, .title:after, h2.section-title, footer.page-footer {
@@ -103,7 +123,13 @@ section {
 	clear: both;
 }
 
-
+/* Forms */
+input, textarea, select {
+	-webkit-border-radius: 3px; /* Safe list of prefixes from CSS3 Please */
+	border-radius: 3px;
+	border-color: #CCC;
+	border-width: 1px;
+}
 
 /* ===== LAYOUT ===== */
 
@@ -118,6 +144,7 @@ section {
 	border-color: white;
 	border-width: 1px 0;
 	text-align: center;
+	line-height: 1;
 }
 
 .title:before {
@@ -170,8 +197,8 @@ section {
 }
 
 
-/* Logging section */
-.logging {
+/* Authentification section */
+.auth-bar {
 	position: absolute;
 	left: 0; top: 0;
 	padding: 0 1em;
@@ -179,6 +206,20 @@ section {
 	line-height: 2em;
 }
 
+/* Flash notices */
+.notice, .error {
+	margin: 0.5em 0;
+	padding: 0 0.5em;
+	border: 1px solid;
+}
+.notice {
+	border-color: green;
+	background-color: #8EEE70;
+}
+.error {
+	border-color: red;
+	background-color: #FF9B9B;
+}
 
 /* Body nav */
 .body-nav {
@@ -294,7 +335,7 @@ footer {
 	border: 1px solid black;
 	padding: 1em;
 	background-color: white;
-	z-index: 200;
+	z-index: 75;
 	-webkit-border-radius: 1em; /* Safe list of prefixes from CSS3 Please */
 	border-radius: 1em;
 	opacity: 0.9;
