@@ -19,3 +19,38 @@ truestamp:
   title: Vrai
   description: Vérifié et fondé
 
+disputable:
+  name: disputable
+  title: Discutable
+  description: Prise de position dans un débat qui n'est pas tranché entre experts de la question
+
+opinion:
+  name: opinion
+  title: Opinion
+  description: Prise de position subjective
+
+edge:
+  name: edge
+  title: Cas limite
+  description: Exemple non-représentatif de la majorité des cas étudiables sur le sujet
+
+doubtful:
+  name: doubtful
+  title: Douteux
+  description: Aucune source fiable ne le confirme
+
+fallacy:
+  name: non-sequitur
+  title: Raccourci
+  description: Conclusion dont certaines prémisses implicites sont discutables
+
+omission:
+  name: omission
+  title: Incomplet
+  description: Omission d'informations susceptibles de relativiser significativement le propos tenu
+
+testimony:
+  name: testimony
+  title: Témoin à charge
+  description: "La version de l'intervenant est contredite par d'autres témoignages au moins aussi renseignés"
+

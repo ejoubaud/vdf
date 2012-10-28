@@ -11,3 +11,76 @@ money:
   ref_url: http://en.wikipedia.org/wiki/Money_creation
   document: zeitgeist
   stamp: falsestamp
+
+
+
+truecheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: truestamp
+
+falsecheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: falsestamp
+
+impugnincheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: impugnin
+
+doubtfulcheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: doubtful
+
+disputablecheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: disputable
+
+opinioncheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: opinion
+
+edgecheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: edge
+
+fallacycheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: fallacy
+
+omissioncheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: omission
+
+testimonycheck:
+  claim: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  remark: Ceci est une remarque de test pour apprécier le rendu visuel des différents tampons disponibles pour la checklist du site.
+  ref_url: http://google.fr
+  document: stampsdoc
+  stamp: testimony
+

@@ -49,3 +49,16 @@ obsolescence:
   year: 2010
   active: true
 
+stampsdoc:
+  name: stampsdoc
+  title: Stamps
+  subtitle: La page de test des tampons
+  description: "<p>Une description sommaire devrait suffire.</p>
+    <p>D'autant plus qu'il ne s'agit pas d'un vrai docu</p>"
+  impact: Impact relativement confidentiel, lecteur de jeux de test...
+  poster: zeitgeist.jpg
+  director: Réalisateur
+  director_url: http://sitedureal.com
+  year: 2007
+  active: true
+
