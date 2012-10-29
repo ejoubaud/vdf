@@ -206,8 +206,8 @@ input, textarea, select {
 	line-height: 2em;
 }
 
-/* Flash notices */
-.notice, .error {
+/* Flash and error notices */
+.notice, .error, .errorExplanation {
 	margin: 0.5em 0;
 	padding: 0 0.5em;
 	border: 1px solid;
@@ -216,9 +216,15 @@ input, textarea, select {
 	border-color: green;
 	background-color: #8EEE70;
 }
-.error {
+.error, .errorExplanation {
 	border-color: red;
-	background-color: #FF9B9B;
+	background-color: #FF5533;
+}
+.field_with_errors {
+	input, textarea, textarea {
+		border-width: 2px;
+		border-color: #FF5533;
+	}
 }
 
 /* Body nav */

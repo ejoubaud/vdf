@@ -1,0 +1,5 @@
+<% unless builder.object.errors.blank? %>
+	<section>
+		<%= builder.error_messages header_message: "Données invalides", message: "Vous devenez respecter certaines contraintes sur les champs suivants:", :class => "errorExplanation text-unit" %>
+	</section>
+<% end %>

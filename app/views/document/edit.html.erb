@@ -5,7 +5,7 @@
 
 <%= render 'shared/body_nav', title: doc.object.name, nav_list: nav_list() %>
 
-<%= doc.error_messages header_message: "Données invalides", message: "Vous devenez respecter certaines contraintes sur les champs suivants:" %>
+<%= render 'shared/form_errors', builder: doc %>
 
 <%= render 'id_card_form', doc: doc %>
 <%= render 'checklist_form', doc: doc %>
