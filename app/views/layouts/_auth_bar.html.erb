@@ -1,5 +1,6 @@
 <div class="auth-bar">
 	<% if user_signed_in? %>
+		<%= yield :auth_bar %>
 		<%= link_to 'Liste', { controller: 'document', action: 'edit_list' } %>
 		|
 		<%= link_to 'Déconnexion', { controller: 'devise/sessions', action: 'destroy' }, method: :delete %>

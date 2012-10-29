@@ -1,5 +1,7 @@
 <%= render 'shared/body_nav', title: @doc.name, nav_list: nav_list(:show, @doc) %>
 
+<% content_for(:auth_bar){ link_to('Modifier', { controller: 'document', action: 'edit', id: @doc.id }) + ' | ' } %>
+
 <%= render 'id_card', doc: @doc %>
 <%= render 'checklist', checklist: @doc.checks %>
 <%= render 'reviews', reviews: @doc.reviews %>

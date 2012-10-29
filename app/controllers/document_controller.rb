@@ -51,8 +51,10 @@ class DocumentController < ApplicationController
     @doc.assign_author! current_user
     if @doc.save
       flash[:notice] = "Modifications enregistrées."
+      redirect_to action: :show, name: @doc.name
+    else
+      render action: :edit
     end
-    render action: :edit
   end
 
 private
