@@ -13,13 +13,15 @@
 	<h3 class="docu-title"><%= doc.text_field :title, placeholder: "Titre" %></h3>
 	<h4 class="docu-subtitle"><%= doc.text_field :subtitle, placeholder: "Sous-titre" %></h4>
 	<div class="issue-date"><%= doc.text_field :year, placeholder: "Année de sortie" %></div>
+
+	<div class="editor"><%= doc.text_field :director, placeholder: "Nom du créateur" %><%= doc.text_field :director_url, placeholder: "Site du ou sur le créateur" %></div>
+
 	<div class="tag-list">
 		<a href="#">tags need handling</a>
 		<a href="#">tag2</a>
 		<a href="#">tag3</a>
 	</div>
 
-	<div class="editor"><%= doc.text_field :director, placeholder: "Nom du créateur" %><%= doc.text_field :director_url, placeholder: "Site du ou sur le créateur" %></div>
 
 	<div class="summary text-unit"><%= doc.text_area :description, rows: 7, placeholder: "Résumé" %></div>
 	<div class="impact">

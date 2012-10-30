@@ -52,7 +52,7 @@ textarea {
 	border-radius: 1em;
 }
 
-.docu-title, .docu-subtitle, .tag-list, .editor { 
+.docu-title, .docu-subtitle, .tag-list, .director { 
 	text-align: center;
 }
 
@@ -75,15 +75,15 @@ textarea {
 	line-height: 1;
 }
 .issue-date {
-	margin: 1em 0;
+	margin: 0.5em 0;
 	font-weight: bold;
 	text-align: center;
 }
+.director {
+	margin: 0.5em;
+}
 .tag-list a {
 	margin: 0.25em;
-}
-.editor {
-	margin-top: 0.5em;
 }
 .summary {
 	margin: 2em 0;
