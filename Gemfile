@@ -35,7 +35,7 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+gem 'debugger', '~> 1.2.1'
 
 gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git' # TODO - Remove when https://github.com/ryanb/nested_form/wiki/How-To:-Render-nested-fields-inside-a-table feature is added in gem repo
 gem 'dynamic_form'

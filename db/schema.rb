@@ -54,12 +54,6 @@ ActiveRecord::Schema.define(:version => 20121016114657) do
     t.integer  "author_id"
   end
 
-  create_table "person", :id => false, :force => true do |t|
-    t.string  "nom",    :limit => 32
-    t.string  "prenom", :limit => 32
-    t.integer "age"
-  end
-
   create_table "stamps", :force => true do |t|
     t.string "name",        :limit => 15, :null => false
     t.string "title",       :limit => 32, :null => false
