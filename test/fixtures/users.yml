@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 user:
-  login: vdf
-  email: vdf@vdf.fr
+  login: admin
+  email: admin@vdf.com
   encrypted_password: $2a$10$dU3BUtpyMfD8W0X4A2nvzOmbqxOXvUVutOyo0acUIESvtCHSrRmui
   failed_attempts: 0
   sign_in_count: 0
