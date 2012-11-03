@@ -9,10 +9,10 @@
 		<%=	doc.fields_for :checks, wrapper: false do |check|
 				render 'check_fields', check: check
 			end %>
-			<li>
-				<%= doc.link_to_add "Ajouter une remarque", :checks %>
-			</li>
 	</ul>
+	<div class="btn-bar">
+		<%= doc.link_to_add "Ajouter une remarque", :checks %>
+	</div>
 
 </section>
 

@@ -23,6 +23,17 @@ textarea {
 .remove_nested_fields {
 	float: right;
 }
+.btn-bar {
+	width: 100%;
+	clear: both;
+	overflow: hidden;
+	text-align: right;
+	min-height: 1em;
+}
+.link .remove_nested_fields {
+	margin-top: 0.5em;
+	margin-right: 0.5em;
+}
 
 
 /* ===== LAYOUT ===== */
@@ -170,10 +181,7 @@ textarea {
 	text-decoration: none;
 	box-shadow: none;
 }
-.checks .add_nested_fields {
-	position: absolute;
-	right: 0;
-}
+
 
 
 /* Critiques et Alternatives */
@@ -205,15 +213,7 @@ textarea {
 	padding: 0;
 	line-height: 1;
 }
-.link-list .buttons-footer {
-	width: 100%;
-	clear: both;
-	text-align: right;
-}
-.link .remove_nested_fields {
-	margin-top: 0.5em;
-	margin-right: 0.5em;
-}
+
 
 
 /* ===== DECORATION ===== */

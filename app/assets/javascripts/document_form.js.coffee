@@ -2,8 +2,8 @@
 
 $ ->
   window.nestedFormEvents.insertFields = (content, assoc, link) ->
-    $li = $(link).closest('li')
-    $(content).insertBefore($li)
+    $ul = $(link).closest('div').prevAll('ul')
+    $(content).appendTo($ul)
 
   $('.summary textarea').each ->
     $t = $(@)

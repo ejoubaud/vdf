@@ -9,8 +9,8 @@
 		<%=	doc.fields_for :reviews, wrapper: false do |r|
 				render 'review_fields', review: r
 			end %>
-		<li class="buttons-footer">
-			<%= doc.link_to_add "Ajouter un lien", :reviews %>
-		</li>
 	</ul>
+	<div class="btn-bar">
+		<%= doc.link_to_add "Ajouter un lien", :reviews %>
+	</div>
 </section>

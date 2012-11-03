@@ -47,7 +47,7 @@ h4 { margin-bottom: 0.5em; }
 /* General text */
 /* body { font-family: 'Heiti TC Light', Helvetica, Verdana, sans-serif; }*/
 body { font-family: Helvetica, Arial, sans-serif; line-height: 1.5; }
-p, ul, ol, form { margin: 1em 0; }
+p, ul, ol { margin: 1em 0; }
 ul, ol { margin-top: 0.5em; margin-bottom: 0.5em; }
 .text-unit ul, .text-unit ol { list-style: disc outside; margin-left: 2em; }
 .text-unit ol ol, .text-unit ol ul, .text-unit ul ol, .text-unit ul ul { list-style: circle outside; margin-left: 2em; }
@@ -362,16 +362,40 @@ footer {
 /* ===== IE Hacks ===== */
 
 /* No pseudo-elements */
-.no-generatedcontent .site-nav, .no-generatedcontent .title {
-	position: static;
-	margin: auto;
-	width: 100%;
-	max-width: 960px;
+.no-generatedcontent {
+	.site-nav {
+		@extend .auth-bar;
+		left: auto;
+		right: 0;
+		padding: 0 0.5em;
+		display: inline-block;
+		border-color: transparent;
+
+		li {
+			width: auto;
+			padding: 0 0.5em;
+		}
+	}
+	.auth-bar {
+		color: white;
+		border-color: transparent;
+		a {
+			background-color: #0F171D;
+			color: white;
+		}
+	}
+	.title {
+		position: static;
+		margin: 0;
+		width: 100%;
+	}
 }
 
-.no-boxshadow section.body {
-	border: 1px solid black;
-	border-bottom-color: transparent;
+.no-boxshadow {
+	section.body, .title:before, .title:after {
+		border: 2px solid #333;
+		border-bottom-color: transparent;
+	}
 }
 .no-boxshadow .title:before {
 	border-style: solid;

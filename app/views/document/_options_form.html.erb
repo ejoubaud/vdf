@@ -14,15 +14,16 @@
 					<%=	theme.fields_for :options, wrapper: false do |o|
 						render 'option_fields', option: o
 					end %>
-					<li class="buttons-footer">
-						<%= theme.link_to_add "Ajouter un lien", :options %>
-					</li>
-
 				</ul>
+
+				<div class="btn-bar">
+					<%= theme.link_to_add "Ajouter un lien", :options %>
+				</div>
 			</li>
 		<% end %>
-		<li>
-			<%= doc.link_to_add "Ajouter un thème", :themes %>
-		</li>
 	</ul>
+
+	<div>
+		<%= doc.link_to_add "Ajouter un thème", :themes %>
+	</div>
 </section>
