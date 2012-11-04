@@ -1,6 +1,8 @@
 <section id="id-card" class="id-card">
 	<div class="poster">
-		<% unless doc.object.poster.blank? %>
+		<% if doc.object.poster.blank? %>
+			<%= image_tag('no-pic.jpg', alt: "Ce docu n'a pas encore d'affichage, chargez-en une.") %>
+		<% else %>
 			<%= image_tag(doc.object.poster) %>
 			<div>
 				<%= doc.check_box :remove_poster %>
@@ -14,7 +16,7 @@
 	<h4 class="docu-subtitle"><%= doc.text_field :subtitle, placeholder: "Sous-titre" %></h4>
 	<div class="issue-date"><%= doc.text_field :year, placeholder: "Année de sortie" %></div>
 
-	<div class="editor"><%= doc.text_field :director, placeholder: "Nom du créateur" %><%= doc.text_field :director_url, placeholder: "Site du ou sur le créateur" %></div>
+	<div class="director"><%= doc.text_field :director, placeholder: "Nom du créateur" %><%= doc.text_field :director_url, placeholder: "Site du ou sur le créateur" %></div>
 
 	<%# TODO Implement tags : div.tag-list>a*3 %>
 
