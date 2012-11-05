@@ -66,7 +66,7 @@ class DocumentControllerTest < ActionController::TestCase
     %w(docu-title docu-subtitle impact).each do |class_name|
       assert_select "#id-card .#{class_name} input", 1
     end
-    assert_select '#id-card .editor input', 2
+    assert_select '#id-card .director input', 2
     assert_select '#id-card .summary textarea', 1
 
     nb_links = 2

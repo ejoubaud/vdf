@@ -2,7 +2,7 @@
 	<%= content_tag(:div, image_tag(doc.poster_url), :class => 'poster') unless doc.poster_url.blank? %>
 	<h3 class="docu-title"><%= doc.title %></h3>
 	<h4 class="docu-subtitle"><%= doc.subtitle %></h4>
-	<p class="issue-date"><%= doc.year %></div>
+	<p class="issue-date"><%= doc.year %></p>
 
 	<%= # renders tag with link if url provided, with name if only name provided, nothing otherwise
 		content_tag(:p, :class => 'director') do
