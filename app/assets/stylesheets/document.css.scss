@@ -20,6 +20,12 @@
 textarea {
 	width: 100%;
 }
+div.wysiwyg {
+	width: 48.5%;
+	iframe {
+		width: 100%;
+	}
+}
 .remove_nested_fields {
 	float: right;
 }
@@ -218,7 +224,7 @@ textarea {
 
 /* ===== DECORATION ===== */
 
-.check, .check .claim, .check .remark, .body-nav li, .link-list li, .posters {
+.check, .check .claim, .check .remark, .body-nav li, .link-list li, .poster {
 	-webkit-transition: all .2s linear;
 	-moz-transition: all .2s linear;
 	-o-transition: all .2s linear;
@@ -226,13 +232,12 @@ textarea {
 }
 
 
-
 /* ===== MEDIA ===== */
 
 @media only screen  
 and (max-width : 768px) {
 	/* ID Card */
-	.impact {
+	.impact, div.wysiwyg {
 		margin-right: 1em;
 		margin-left: 1em;
 	}
@@ -252,9 +257,6 @@ and (max-width : 650px) {
 		float: none;
 		border-color: transparent;
 		width: 100%;
-	}
-	.check .remark p {
-		padding: 0;
 	}
 
 	/* Critiques et Alternatives */
@@ -309,5 +311,8 @@ and (max-width : 415px) {
 	}
 	.summary textarea {
 		width: 95%;
+	}
+	div.wysiwyg {
+		width: auto;
 	}
 }

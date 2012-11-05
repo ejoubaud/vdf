@@ -19,7 +19,7 @@ $ ->
       coord = {
         left:         pos.left + $i.width();
         top:          pos.top
-        'min-height': $i.closest('li').height() - ($tip.innerHeight() - $tip.height());
+        'min-height': $i.closest('.remark').height() - ($tip.innerHeight() - $tip.height());
       }
       $tip.css(coord)
       $i.data('tip', $tip)

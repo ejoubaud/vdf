@@ -3,10 +3,11 @@
 		<p><%= check.text_area :claim, rows: 3, placeholder: "Reformulation fidèle et neutre d'une affirmation du documentaire" %></p>
 	</div>
 	<div class="remark">
-		<div class="picto">
-			<%= check.collection_select(:stamp_id, Stamp.all, :id, :title) %>
-		</div>
 		<%= check.link_to_remove "X" %>
+		<div class="picto">
+			<img src="" />
+		</div>
+		<%= check.collection_select(:stamp_id, Stamp.all, :id, :title) %>
 		<p>
 			<%= check.text_area :remark, rows: 3, placeholder: "Remarque" %>
 			<span class="source">

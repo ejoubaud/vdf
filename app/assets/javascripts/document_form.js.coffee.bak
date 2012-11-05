@@ -17,28 +17,14 @@ $ ->
     $('.poster :checkbox').prop('checked', false)
     $('.poster img').show()
 
-  # Stamps preview
-  stamps = <%= Hash[ Stamp.all.map { |s| [ s.id, s ] } ].to_json %>
-  updateStamp = ->
-    $s = $(@)
-    $img = $s.closest('.remark').find('.picto img')
-    stamp = stamps[ $s.val() ]
-    $img.prop('src', '<%= Rails.application.config.assets.prefix %>/'+stamp.name + '.png')
-    $img.prop('alt', stamp.title)
-    $img.data('longdesc', stamp.description)
-  $('.remark select').each   updateStamp
-  $('.remark select').change updateStamp
-
-  # Summary RTE init
+  # RTE loader
   $('.summary textarea').each ->
     $t = $(@)
-    defaultValue = '<p>'+$t.prop('placeholder')+'</p>'
     $t.wysiwyg
       rmUnusedControls: true
       brIE: false
       rmUnwantedBr: true
-      initialContent: defaultValue
-      autoGrow: true
+      initialContent: '<p>'+$t.prop('placeholder')+'</p>'
       controls:
         bold: { visible : true }
         italic: { visible : true }
@@ -46,9 +32,3 @@ $ ->
         insertUnorderedList: { visible : true }
         insertOrderedList: { visible : true }
         removeFormat: { visible : true }
-        # FIXME Emulates placeholder behaviour on RTE
-        #events:
-        #  focus: -> $this.wysiwyg('clear') if ($this = $(this)).wysiwyg('getContent') == defaultValue
-        #  blur: -> $this.wysiwyg('setContent', defaultValue) if ($this = $(this)).wysiwyg('getContent') in ['', '<p></p>']
-  $('div.wysiwyg').css('width', '').find('iframe').css('width', '')
-
