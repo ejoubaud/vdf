@@ -204,6 +204,13 @@ input, textarea, select {
 	padding: 0 1em;
 	font-size: 90%;
 	line-height: 2em;
+
+	.login a {
+		text-decoration: none;
+	}
+	.login a:hover {
+		text-decoration: underline;
+	}
 }
 
 /* Flash and error notices */
@@ -409,7 +416,8 @@ footer {
 
 /* Title */
 @media only screen  
-and (max-width : 415px) {
+and (max-width : 550px) {
+/* Old value : 415px, raised because of auth-bar */
 	.title h1 {
 		font-size: 2em;
 		margin: 0.25em 0;
@@ -426,21 +434,43 @@ and (max-width : 415px) {
 		padding: 0;
 		-webkit-border-radius: 0; /* Safe list of prefixes from CSS3 Please */
 		border-radius: 0;
+		text-align: right;
+		
+		li {
+			float: none;
+			display: inline-block;
+			width: auto;
+			margin: auto;
+		}
+		
+		a {
+			float: none;
+			display: inline-block;
+			font-size: 90%;
+			width: auto;
+		}
 	}
-	.site-nav ul {
-		text-align: center;
-	}
-	.site-nav li {
-		float: none;
-		display: inline-block;
-		width: auto;
-		margin: auto;
-	}
-	.site-nav a {
-		float: none;
-		display: inline-block;
+
+	.auth-bar {
+		position: static;
+		float: left;
+		left: auto; top: auto;
+		padding: 0 0.1em;
 		font-size: 90%;
-		width: auto;
+		line-height: 1.75;
+		color: white;
+
+		a {
+			font-size: 90%;
+			color: white;
+		}
+	}
+}
+
+@media only screen  
+and (max-width : 600px) {
+	.auth-bar .login {
+		display: none;
 	}
 }
 

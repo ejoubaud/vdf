@@ -1,11 +1,13 @@
 <div class="auth-bar">
 	<% if user_signed_in? %>
 		<%= yield :auth_bar %>
-		<%= link_to 'Liste', { controller: 'document', action: 'edit_list' } %>
+		<%= link_to 'Liste', { controller: '/document', action: 'edit_list' } %>
 		|
 		<%= link_to 'Déconnexion', { controller: 'devise/sessions', action: 'destroy' }, method: :delete %>
-		(<%= current_user.login %>)
+		<span class="login">
+			(<%= link_to current_user.login, { controller: 'devise/registrations', action: 'edit' } %>)
+		</span>
 	<% else %>
-		<%= link_to 'Connexion', controller: 'devise/sessions', action: 'new' %>
+		<%= link_to 'Connexion', { controller: 'devise/sessions', action: 'new' } %>
 	<% end %>
 </div>

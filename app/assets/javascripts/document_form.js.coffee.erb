@@ -1,0 +1,29 @@
+#= require jquery.wysiwyg
+
+$ ->
+  # Ajout dynamique de champs de formulaire en mode liste
+  window.nestedFormEvents.insertFields = (content, assoc, link) ->
+    $li = $(link).closest('li')
+    $(content).insertBefore($li)
+
+  # Summary RTE init
+  $('.summary textarea').each ->
+    $t = $(@)
+    defaultValue = '<p>'+$t.prop('placeholder')+'</p>'
+    $t.wysiwyg
+      rmUnusedControls: true
+      brIE: false
+      rmUnwantedBr: true
+      initialContent: defaultValue
+      controls:
+        bold: { visible : true }
+        italic: { visible : true }
+        html: { visible : true }
+        insertUnorderedList: { visible : true }
+        insertOrderedList: { visible : true }
+        removeFormat: { visible : true }
+        # FIXME Emulates placeholder behaviour on RTE
+        #events:
+        #  focus: -> $this.wysiwyg('clear') if ($this = $(this)).wysiwyg('getContent') == defaultValue
+        #  blur: -> $this.wysiwyg('setContent', defaultValue) if ($this = $(this)).wysiwyg('getContent') in ['', '<p></p>']
+
