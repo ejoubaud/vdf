@@ -6,15 +6,14 @@ $ ->
     ->
       $i=$(this)
       pos = $i.position()
-      unless $tip = $i.data('tip')
-        $tip = $ """
-          <div class='tooltip'>
-            <h3>#{ $i.prop 'alt' }</h3>
-            <p>#{ $i.data 'longdesc' }</p>
-          </div>
-          """
-        $tip.hide()
-        $i.after $tip
+      $tip = $ """
+        <div class='tooltip'>
+          <h3>#{ $i.prop 'alt' }</h3>
+          <p>#{ $i.data 'longdesc' }</p>
+        </div>
+        """
+      $tip.hide()
+      $i.after $tip
       $tip.show()
       coord = {
         left:         pos.left + $i.width();
@@ -24,6 +23,6 @@ $ ->
       $tip.css(coord)
       $i.data('tip', $tip)
     , ->
-      $(this).data('tip').fadeOut(200)
+      $(this).data('tip').fadeOut(200, -> $(@).remove())
   )
 
