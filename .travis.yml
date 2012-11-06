@@ -3,5 +3,8 @@ bundler_args: --without development
 rvm:
   - "1.9.2"
   - "1.9.3"
+before_script:
+  - bundle exec rake --trace db:migrate
+  - bundle exec rake db:test:prepare
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
