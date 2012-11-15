@@ -52,3 +52,10 @@ $ ->
         #  blur: -> $this.wysiwyg('setContent', defaultValue) if ($this = $(this)).wysiwyg('getContent') in ['', '<p></p>']
   $('div.wysiwyg').css('width', '').find('iframe').css('width', '')
 
+  # Asks for confirmation in case user leaves the page with unsaved modifications
+  needConfirm = false
+  $(window).on 'beforeunload', ->
+    'En quittant la page, vous annulez les dernières saisies, confirmer ?' if needConfirm
+  $('input,select,textarea').change -> needConfirm = true
+  $('form').submit -> needConfirm = false
+
