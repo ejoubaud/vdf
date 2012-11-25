@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   validates :login, presence: true
 
+  simple_roles
+
+  after_create { |user| user.role ||= :user }
+
   def to_s
     login
   end

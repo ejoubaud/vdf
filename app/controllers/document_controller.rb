@@ -2,13 +2,15 @@
 
 class DocumentController < ApplicationController
 
-  before_filter :authenticate_user!, only: [ :new, :create, :edit, :update, :list_edit ]
+  #before_filter :authenticate_user!, only: [ :new, :create, :edit, :update, :list_edit ]
+  load_and_authorize_resource
 
   def show
     (@doc = Document.sheet(params[:name])) or not_found
+    #authorize! :read, @doc
   end
 
-    def list
+  def list
     @docs   = Document.where(active: true).order(:title)
     @action = 'show'
     @title  = 'Documentaires'

@@ -50,6 +50,7 @@ $ ->
         #events:
         #  focus: -> $this.wysiwyg('clear') if ($this = $(this)).wysiwyg('getContent') == defaultValue
         #  blur: -> $this.wysiwyg('setContent', defaultValue) if ($this = $(this)).wysiwyg('getContent') in ['', '<p></p>']
+  # Delegates width sizing to CSS, not JS
   $('div.wysiwyg').css('width', '').find('iframe').css('width', '')
 
   # Asks for confirmation in case user leaves the page with unsaved modifications

@@ -1,4 +1,3 @@
-$LOAD_PATH << '../'
 require 'test_helper'
 
 class DocumentControllerTest < ActionController::TestCase
@@ -8,7 +7,7 @@ class DocumentControllerTest < ActionController::TestCase
   # ===== SHOW Action =====
 
   test "Document request by name returns a document" do
-    doc = create :document, name: 'controller_doc', active: true
+    create :document, name: 'controller_doc', active: true
 
     assert_routing '/controller_doc', controller: 'document', action: 'show', name: 'controller_doc'
   end
@@ -52,8 +51,9 @@ class DocumentControllerTest < ActionController::TestCase
 
   test "new is for signed_in users only" do
     get :new
-    assert_response :redirect
-    assert_redirected_to controller: 'devise/sessions', action: 'new'
+    assert_response :forbidden
+    # TODO : Reestablish login screen redirection after public opening
+    # assert_redirected_to controller: 'devise/sessions', action: 'new'
   end
 
   test "New document form has nested forms for checklist, reviews and themes" do
@@ -91,8 +91,9 @@ class DocumentControllerTest < ActionController::TestCase
 
   test "create is for signed_in users only" do
     post :create
-    assert_response :redirect
-    assert_redirected_to controller: 'devise/sessions', action: 'new'
+    assert_response :forbidden
+    # TODO : Reestablish login screen redirection after public opening
+    # assert_redirected_to controller: 'devise/sessions', action: 'new'
   end
 
   test "create assigns logged_in user as author to the new document and its lines" do
@@ -112,6 +113,7 @@ class DocumentControllerTest < ActionController::TestCase
   end
 
   test "List request returns a list of all active documents" do
+    sign_in_new_user
     get :list
     assert_response :success
 
@@ -123,17 +125,18 @@ class DocumentControllerTest < ActionController::TestCase
   # ===== EDIT Action =====
 
   test "edit returns the edit form for a document identified by its name" do
-    doc = create :document, name: 'controller_doc', active: true
+    create :document, name: 'controller_doc', active: true
 
     assert_routing '/edit/controller_doc', controller: 'document', action: 'edit', name: 'controller_doc'
   end
 
   test "edit is for signed_in users only" do
-    doc = create :document, name: 'controller_doc', active: true
+    create :document, name: 'controller_doc', active: true
 
     post :edit, name: 'controller_doc'
-    assert_response :redirect
-    assert_redirected_to controller: 'devise/sessions', action: 'new'
+    assert_response :forbidden
+    # TODO : Reestablish login screen redirection after public opening
+    # assert_redirected_to controller: 'devise/sessions', action: 'new'
   end
 
   # TODO - Tester la suppression et le remplacement d'image (doc[remove_poster])
@@ -149,13 +152,14 @@ class DocumentControllerTest < ActionController::TestCase
     doc = create :document
 
     post :update, id: doc.id
-    assert_response :redirect
-    assert_redirected_to controller: 'devise/sessions', action: 'new'
+    assert_response :forbidden
+    # TODO : Reestablish login screen redirection after public opening
+    # assert_redirected_to controller: 'devise/sessions', action: 'new'
   end
 
   test "update assigns logged_in user as author to the document's new lines" do
     doc = create :document, name: 'to_update', active: true
-    user1 = create :user
+    user1 = create :editor
     doc.assign_author! user1
     doc.save!
 
@@ -177,7 +181,7 @@ private
 
   # ===== GENERAL HELPERS =====
   def sign_in_new_user
-    user = create :user
+    user = create :editor
     sign_in user
     user
   end

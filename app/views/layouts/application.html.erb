@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VDF</title>
+  <title><%= content_for?(:title) ? "VDF::#{ yield(:title) }" : 'Versions des faits' %></title>
   <%= stylesheet_link_tag    "application", controller_name, :media => "all" %>
   <%= yield :css %>
   <%= javascript_include_tag "application" %>
@@ -37,7 +37,7 @@
 	<blockquote>
 		<p>Le plus grand ennemi de la connaissance n&apos;est pas l&apos;ignorance, mais l&apos;illusion de la connaissance.</p>
 	</blockquote>
-	<cite>Stephen Hawking</cite>
+	<%# <cite>Stephen Hawking</cite> %>
 </footer>
 
 </body>

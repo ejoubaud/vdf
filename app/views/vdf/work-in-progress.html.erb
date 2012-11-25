@@ -1,0 +1,18 @@
+<%= render 'shared/body_nav', title: "Ouverture prochaine" %>
+
+<section>
+	<header>
+		<h2 class="section-title">
+			Repassez dans quelques temps
+		</h2>
+	</header>
+
+	<p>Cette page n'est pas encore ouverte au public.</p>
+
+	<p>L'ouverture ne devrait pas tarder.</p>
+
+	<p><%= link_to 'Inscrivez-vous', controller: 'devise/registrations', action: 'new' %> et nous vous tiendrons inform&eacute; par email.</p>
+
+	<p>Pour en savoir plus sur ce site, jetez un &oelig;il &agrave; notre <%= link_to 'Foire Aux Questions', controller: 'vdf', action: 'about' %>.</p>
+
+</section>

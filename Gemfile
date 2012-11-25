@@ -34,11 +34,12 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git' # TODO - Remove when https://github.com/ryanb/nested_form/wiki/How-To:-Render-nested-fields-inside-a-table feature is added in gem repo
-gem 'dynamic_form'
-gem 'carrierwave'
-gem 'devise'
-#gem 'cantango'
+gem 'nested_form', "~> 0.3.1"
+gem 'dynamic_form', "~> 1.1.4"
+gem 'carrierwave', "~> 0.7.1"
+gem 'devise', "~> 2.1.2"
+gem 'simple_roles', "~> 0.0.8"
+gem 'cancan', "~> 1.6.8"
 
 
 group :test, :development do

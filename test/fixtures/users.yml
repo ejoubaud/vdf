@@ -1,9 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-user:
+admin:
   login: admin
   email: admin@versionsdesfaits.com
   encrypted_password: $2a$10$dU3BUtpyMfD8W0X4A2nvzOmbqxOXvUVutOyo0acUIESvtCHSrRmui
+  role: :admin
+  failed_attempts: 0
+  sign_in_count: 0
+
+editor:
+  login: editor
+  email: editor@versionsdesfaits.com
+  encrypted_password: $2a$10$dU3BUtpyMfD8W0X4A2nvzOmbqxOXvUVutOyo0acUIESvtCHSrRmui
+  role: :editor
+  failed_attempts: 0
+  sign_in_count: 0
+
+user:
+  login: user
+  email: user@versionsdesfaits.com
+  encrypted_password: $2a$10$dU3BUtpyMfD8W0X4A2nvzOmbqxOXvUVutOyo0acUIESvtCHSrRmui
+  role: :user
   failed_attempts: 0
   sign_in_count: 0
 
