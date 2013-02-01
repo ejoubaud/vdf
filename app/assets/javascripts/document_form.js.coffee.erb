@@ -26,12 +26,20 @@ $ ->
     $img.prop('src', '<%= Rails.application.config.assets.prefix %>/'+stamp.name + '.png')
     $img.prop('alt', stamp.title)
     $img.data('longdesc', stamp.description)
-  $('.remark select').each   updateStamp
-  $('.remark select').change updateStamp
+  makeStampsPreviewable = ->
+    $('.remark select').each ->
+      $select = $(this)
+      unless $select.data('previewable')
+        updateStamp.call this
+        $select.change updateStamp
+      # jQuery doesn't provide reliable way to check if an eventListener has been added, so we shall tag it by ourselves
+      $select.data('previewable', true)
+  makeStampsPreviewable()
+  $(document).on 'nested:fieldAdded', makeStampsPreviewable
 
   # Summary RTE init
   $('.summary textarea').each ->
-    $t = $(@)
+    $t = $(this)
     defaultValue = '<p>'+$t.prop('placeholder')+'</p>'
     $t.wysiwyg
       rmUnusedControls: true
