@@ -235,6 +235,8 @@ input, textarea, select {
 
 /* Body nav */
 .body-nav {
+	position: absolute;
+	top: 0; left: 0; right: 0;
 	margin-bottom: 1em;
 	overflow: hidden;
 	height: 2em;
@@ -281,16 +283,16 @@ input, textarea, select {
 
 
 /* Body */
-section.body { 
+section.body {
 	position: relative;
 	width: 100%;
 	min-height: 360px;
 	max-width: 960px;
-	padding-bottom: 2em;
+	padding: 2em 0 1em;
 	margin: auto;
 	box-shadow: -1em 0 1em -1em black, 1em 0 1em -1em black;
 }
-section.body section { 
+section.body section {
 	padding-left: 2em;
 	padding-right: 2em;
 }
@@ -312,6 +314,83 @@ footer {
 	padding: 2em;
 	text-align: center;
 }
+
+/* Social bar */
+.social-bar {
+	margin: 0;
+	li {
+		display: inline-block;
+		height: 50px;
+		width: 50px;
+		margin: 0 0.5em;
+	}
+	a {
+		display: block;
+		text-indent: -9999em;
+		width: 50px;
+		height: 50px;
+		transition: all 0.5s ease-out;
+		-webkit-transition: all 0.5s ease-out;
+		-moz-transition: all 0.5s ease-out;
+		-ms-transition: all 0.5s ease-out;
+		-o-transition: all 0.5s ease-out;
+	}
+	.twitter {
+		background-image: url(twitter-mini-off.png);
+	}
+	.facebook {
+		background-image: url(facebook-mini-off.png);
+	}
+	li:hover {
+		a {
+			-webkit-transform: rotateZ(720deg);
+			-moz-transform: rotateZ(720deg);
+			-ms-transform: rotateZ(720deg);
+			transform: rotateZ(720deg);
+		}
+		.twitter {
+			background-image: url(twitter-mini-on.png);
+		}
+		.facebook {
+			background-image: url(facebook-mini-on.png);
+		}
+	}
+	/* Fallback for browsers li:hover-uncompliant : just changes the bg; */
+	.twitter:hover {
+		background-image: url(twitter-mini-on.png);
+	}
+	.facebook:hover {
+		background-image: url(facebook-mini-on.png);
+	}
+}
+
+
+
+
+
+
+/* ===== UTILITIES ===== */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+
 
 
 
